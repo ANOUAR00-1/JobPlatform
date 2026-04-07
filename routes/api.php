@@ -15,6 +15,7 @@ use App\Http\Controllers\CandidatureController;
 // Public routes
 Route::prefix('auth')->group(function () {
     Route::post('/register/entreprise', [AuthController::class, 'registerEntreprise']);
+    Route::post('/register/candidat', [AuthController::class, 'registerCandidat']);
 });
 
 // Protected routes (require Sanctum authentication)
