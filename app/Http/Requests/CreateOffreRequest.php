@@ -20,7 +20,7 @@ class CreateOffreRequest extends FormRequest
             'type_contrat' => ['required', Rule::in(['CDI', 'CDD', 'Stage', 'Freelance'])],
             'competences_requises' => 'nullable|array',
             'competences_requises.*' => 'string|max:255',
-            'localisation' => 'nullable|string|max:255',
+            'ville_id' => 'nullable|exists:villes,id',
             'salaire' => 'nullable|string|max:100',
             'date_expiration' => 'nullable|date|after:today',
         ];

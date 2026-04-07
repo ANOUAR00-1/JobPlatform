@@ -1,8 +1,8 @@
 {
 	"info": {
 		"_postman_id": "jobnow-api-collection",
-		"name": "JobNow API - 3 Tasks",
-		"description": "Minimalist API for JobNow\n\n- JNV-2: Entreprise Registration\n- JNV-15: Post Job Offer\n- JNV-22: Apply for Job",
+		"name": "JobNow API - Complete",
+		"description": "Complete API for JobNow Platform\n\n**Auth Endpoints:**\n- Register Candidat\n- Register Entreprise\n- Login\n\n**Job Endpoints:**\n- List Jobs\n- Create Job Offer\n- Apply for Job",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"variable": [
@@ -15,135 +15,273 @@
 			"key": "token",
 			"value": "",
 			"type": "string"
+		},
+		{
+			"key": "candidat_token",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "entreprise_token",
+			"value": "",
+			"type": "string"
 		}
 	],
 	"item": [
 		{
-			"name": "JNV-2: Register Entreprise",
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Accept",
-						"value": "application/json"
-					},
-					{
-						"key": "Content-Type",
-						"value": "application/json"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"email\": \"entreprise@example.com\",\n    \"password\": \"password123\",\n    \"password_confirmation\": \"password123\",\n    \"raison_social\": \"Ma Société SARL\",\n    \"adresse\": \"123 Rue Example, Casablanca\",\n    \"telephone\": \"+212600000000\"\n}"
-				},
-				"url": {
-					"raw": "{{base_url}}/auth/register/entreprise",
-					"host": ["{{base_url}}"],
-					"path": ["auth", "register", "entreprise"]
-				},
-				"description": "Register a new entreprise account.\n\n**Required fields:**\n- email (unique)\n- password (min 8 chars)\n- password_confirmation\n- raison_social\n\n**Optional fields:**\n- adresse\n- telephone"
-			},
-			"response": [],
-			"event": [
+			"name": "Auth",
+			"item": [
 				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"if (pm.response.code === 201) {",
-							"    var jsonData = pm.response.json();",
-							"    pm.collectionVariables.set(\"token\", jsonData.data.token);",
-							"}"
+					"name": "Register Candidat",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
 						],
-						"type": "text/javascript"
-					}
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"candidat@example.com\",\n    \"password\": \"password123\",\n    \"nom\": \"Dupont\",\n    \"prenom\": \"Jean\",\n    \"telephone\": \"+212600000001\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/register",
+							"host": ["{{base_url}}"],
+							"path": ["register"]
+						},
+						"description": "Register a new candidat account.\n\n**Required fields:**\n- email (unique)\n- password (min 6 chars)\n- nom\n- prenom\n- telephone"
+					},
+					"response": [],
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"if (pm.response.code === 200 || pm.response.code === 201) {",
+									"    var jsonData = pm.response.json();",
+									"    pm.collectionVariables.set(\"candidat_token\", jsonData.access_token);",
+									"    pm.collectionVariables.set(\"token\", jsonData.access_token);",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					]
+				},
+				{
+					"name": "Register Entreprise (JNV-2)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"entreprise@example.com\",\n    \"password\": \"password123\",\n    \"password_confirmation\": \"password123\",\n    \"raison_social\": \"Ma Société SARL\",\n    \"adresse\": \"123 Rue Example, Casablanca\",\n    \"telephone\": \"+212600000000\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/auth/register/entreprise",
+							"host": ["{{base_url}}"],
+							"path": ["auth", "register", "entreprise"]
+						},
+						"description": "Register a new entreprise account.\n\n**Required fields:**\n- email (unique)\n- password (min 8 chars)\n- password_confirmation\n- raison_social\n\n**Optional fields:**\n- adresse\n- telephone"
+					},
+					"response": [],
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"if (pm.response.code === 201) {",
+									"    var jsonData = pm.response.json();",
+									"    pm.collectionVariables.set(\"entreprise_token\", jsonData.data.token);",
+									"    pm.collectionVariables.set(\"token\", jsonData.data.token);",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					]
+				},
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"entreprise@example.com\",\n    \"password\": \"password123\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/login",
+							"host": ["{{base_url}}"],
+							"path": ["login"]
+						},
+						"description": "Login with email and password.\n\n**Required fields:**\n- email\n- password"
+					},
+					"response": [],
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"if (pm.response.code === 200) {",
+									"    var jsonData = pm.response.json();",
+									"    pm.collectionVariables.set(\"token\", jsonData.access_token);",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					]
 				}
 			]
 		},
 		{
-			"name": "JNV-15: Create Job Offer",
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "{{token}}",
-							"type": "string"
-						}
-					]
-				},
-				"method": "POST",
-				"header": [
-					{
-						"key": "Accept",
-						"value": "application/json"
+			"name": "Jobs",
+			"item": [
+				{
+					"name": "List All Jobs",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/jobs",
+							"host": ["{{base_url}}"],
+							"path": ["jobs"]
+						},
+						"description": "Get all available job offers.\n\n**Auth:** Required (any role)"
 					},
-					{
-						"key": "Content-Type",
-						"value": "application/json"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"titre\": \"Développeur Laravel Senior\",\n    \"description\": \"Nous recherchons un développeur Laravel expérimenté pour rejoindre notre équipe.\",\n    \"type_contrat\": \"CDI\",\n    \"competences_requises\": [\"Laravel\", \"PHP\", \"MySQL\", \"REST API\"],\n    \"localisation\": \"Casablanca, Maroc\",\n    \"salaire\": \"15000-20000 MAD\",\n    \"date_expiration\": \"2026-05-30\"\n}"
+					"response": []
 				},
-				"url": {
-					"raw": "{{base_url}}/offres",
-					"host": ["{{base_url}}"],
-					"path": ["offres"]
-				},
-				"description": "Create a new job offer (Entreprise only).\n\n**Required fields:**\n- titre\n- description\n- type_contrat (CDI, CDD, Stage, Freelance)\n\n**Optional fields:**\n- competences_requises (array)\n- localisation\n- salaire\n- date_expiration (must be future date)"
-			},
-			"response": []
+				{
+					"name": "Create Job Offer (JNV-15)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{entreprise_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"titre\": \"Développeur Laravel Senior\",\n    \"description\": \"Nous recherchons un développeur Laravel expérimenté pour rejoindre notre équipe.\",\n    \"type_contrat\": \"CDI\",\n    \"competences_requises\": [\"Laravel\", \"PHP\", \"MySQL\", \"REST API\"],\n    \"ville_id\": 1,\n    \"salaire\": \"15000-20000 MAD\",\n    \"date_expiration\": \"2026-05-30\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/offres",
+							"host": ["{{base_url}}"],
+							"path": ["offres"]
+						},
+						"description": "Create a new job offer (Entreprise only).\n\n**Required fields:**\n- titre\n- description\n- type_contrat (CDI, CDD, Stage, Freelance)\n\n**Optional fields:**\n- competences_requises (array)\n- localisation\n- salaire\n- date_expiration (must be future date)\n\n**Auth:** Required (entreprise role only)"
+					},
+					"response": []
+				}
+			]
 		},
 		{
-			"name": "JNV-22: Apply for Job",
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "{{token}}",
-							"type": "string"
-						}
-					]
-				},
-				"method": "POST",
-				"header": [
-					{
-						"key": "Accept",
-						"value": "application/json"
-					}
-				],
-				"body": {
-					"mode": "formdata",
-					"formdata": [
-						{
-							"key": "offre_id",
-							"value": "1",
-							"type": "text"
+			"name": "Candidatures",
+			"item": [
+				{
+					"name": "Apply for Job (JNV-22)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{candidat_token}}",
+									"type": "string"
+								}
+							]
 						},
-						{
-							"key": "cv",
-							"type": "file",
-							"src": ""
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "offre_id",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "cv",
+									"type": "file",
+									"src": ""
+								},
+								{
+									"key": "lettre_motivation",
+									"value": "Je suis très motivé pour rejoindre votre équipe...",
+									"type": "text"
+								}
+							]
 						},
-						{
-							"key": "lettre_motivation",
-							"value": "Je suis très motivé pour rejoindre votre équipe...",
-							"type": "text"
-						}
-					]
-				},
-				"url": {
-					"raw": "{{base_url}}/candidatures",
-					"host": ["{{base_url}}"],
-					"path": ["candidatures"]
-				},
-				"description": "Apply for a job offer (Candidat only).\n\n**Required fields:**\n- offre_id (must exist)\n- cv (file: PDF, DOC, DOCX - max 5MB)\n\n**Optional fields:**\n- lettre_motivation (max 5000 chars)\n\n**Note:** You need to be authenticated as a candidat to use this endpoint."
-			},
-			"response": []
+						"url": {
+							"raw": "{{base_url}}/candidatures",
+							"host": ["{{base_url}}"],
+							"path": ["candidatures"]
+						},
+						"description": "Apply for a job offer (Candidat only).\n\n**Required fields:**\n- offre_id (must exist)\n- cv (file: PDF, DOC, DOCX - max 5MB)\n\n**Optional fields:**\n- lettre_motivation (max 5000 chars)\n\n**Auth:** Required (candidat role only)"
+					},
+					"response": []
+				}
+			]
 		}
 	]
 }

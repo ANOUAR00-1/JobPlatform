@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\CreateOffreRequest;
 use App\Models\Offre;
 use Illuminate\Http\JsonResponse;
+use App\Http\Requests\CreateOffreRequest;
 
 class OffreController extends Controller
 {
@@ -35,7 +35,7 @@ class OffreController extends Controller
             'titre' => $request->titre,
             'description' => $request->description,
             'competences_requises' => $request->competences_requises,
-            'localisation' => $request->localisation,
+            'ville_id' => $request->ville_id,
             'salaire' => $request->salaire,
             'type_contrat' => $request->type_contrat,
             'date_expiration' => $request->date_expiration,

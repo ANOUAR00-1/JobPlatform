@@ -14,7 +14,7 @@ return new class extends Migration
             $table->string('titre');
             $table->text('description');
             $table->json('competences_requises')->nullable();
-            $table->string('localisation')->nullable();
+            $table->foreignId('ville_id')->nullable()->constrained()->onDelete('set null');
             $table->string('salaire', 100)->nullable();
             $table->enum('type_contrat', ['CDI', 'CDD', 'Stage', 'Freelance'])->default('CDI');
             $table->date('date_expiration')->nullable();
