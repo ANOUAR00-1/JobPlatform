@@ -6,9 +6,6 @@ use Illuminate\Database\Migrations\Migration;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up(): void
     {
         Schema::create('offres', function (Blueprint $table) {
@@ -16,9 +13,9 @@ return new class extends Migration
             $table->foreignId('entreprise_id')->constrained()->onDelete('cascade');
             $table->string('titre');
             $table->text('description');
-            $table->json('competences_requises')->nullable(); // Required skills as JSON array
-            $table->foreignId('ville_id')->constrained("villes")->onDelete("cascade");
-            $table->string('salaire')->nullable(); // Salary range or amount
+            $table->json('competences_requises')->nullable();
+            $table->string('localisation')->nullable();
+            $table->string('salaire', 100)->nullable();
             $table->enum('type_contrat', ['CDI', 'CDD', 'Stage', 'Freelance'])->default('CDI');
             $table->date('date_expiration')->nullable();
             $table->enum('statut', ['ouverte', 'fermee', 'pourvue'])->default('ouverte');
@@ -26,9 +23,6 @@ return new class extends Migration
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
         Schema::dropIfExists('offres');
