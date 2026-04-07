@@ -11,7 +11,8 @@ class Offre extends Model
         'titre',
         'description',
         'competences_requises',
-        'localisation',
+
+        'ville_id',
         'salaire',
         'type_contrat',
         'date_expiration',
@@ -21,6 +22,9 @@ class Offre extends Model
 
     public function ville()
     {
-        return $this->belongsTo(Ville::class, 'localisation', 'nom');
+
+
+        return $this->belongsTo(Ville::class);
+
     }
 }

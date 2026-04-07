@@ -10,6 +10,7 @@ class Ville extends Model
 
     public function offres()
     {
-        return $this->hasMany(Offre::class, 'localisation', 'nom');
+
+        return $this->hasMany(Offre::class);
     }
 }

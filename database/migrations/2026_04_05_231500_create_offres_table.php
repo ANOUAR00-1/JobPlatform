@@ -17,7 +17,9 @@ return new class extends Migration
             $table->string('titre');
             $table->text('description');
             $table->json('competences_requises')->nullable(); // Required skills as JSON array
-            $table->string('localisation')->nullable();
+
+            $table->foreignId('ville_id')->constrained('villes')->onDelete('cascade'); // Foreign key to villes table
+
             $table->string('salaire')->nullable(); // Salary range or amount
             $table->enum('type_contrat', ['CDI', 'CDD', 'Stage', 'Freelance'])->default('CDI');
             $table->date('date_expiration')->nullable();
@@ -32,6 +34,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('offre_emplois');
+
+        Schema::dropIfExists('offres');
     }
 };
