@@ -3,11 +3,8 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-<<<<<<< HEAD
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-=======
->>>>>>> origin/feature/dev
 
 class Offre extends Model
 {
@@ -16,18 +13,13 @@ class Offre extends Model
         'titre',
         'description',
         'competences_requises',
-<<<<<<< HEAD
         'localisation',
-=======
-        'ville_id',
->>>>>>> origin/feature/dev
         'salaire',
         'type_contrat',
         'date_expiration',
         'statut',
     ];
 
-<<<<<<< HEAD
     protected function casts(): array
     {
         return [
@@ -44,11 +36,5 @@ class Offre extends Model
     public function candidatures(): HasMany
     {
         return $this->hasMany(Candidature::class);
-=======
-
-    public function ville()
-    {
-        return $this->belongsTo(Ville::class);
->>>>>>> origin/feature/dev
     }
 }

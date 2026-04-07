@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
-<<<<<<< HEAD
 use App\Models\User;
 use App\Models\Entreprise;
+use App\Models\Candidat;
+use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\ValidationException;
 use App\Http\Requests\RegisterEntrepriseRequest;
 
 class AuthController extends Controller
@@ -55,17 +58,10 @@ class AuthController extends Controller
             ], 500);
         }
     }
-=======
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 
-use App\Models\User;
-use App\Models\Candidat;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Validation\ValidationException;
-
-class AuthController extends Controller
-{
+    /**
+     * Register candidat (from feature/dev)
+     */
     public function register(Request $request)
     {
         $request->validate([
@@ -79,7 +75,7 @@ class AuthController extends Controller
         $user = User::create([
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            'role' => 'candidate',
+            'role' => 'candidat',
         ]);
 
         $candidat = Candidat::create([
@@ -96,6 +92,9 @@ class AuthController extends Controller
         ]);
     }
 
+    /**
+     * Login (from feature/dev)
+     */
     public function login(Request $request)
     {
         $request->validate([
@@ -105,7 +104,7 @@ class AuthController extends Controller
 
         $user = User::where('email', $request->email)->first();
 
-        if (! $user || ! Hash::check($request->password, $user->h)) {
+        if (!$user || !Hash::check($request->password, $user->password)) {
             throw ValidationException::withMessages([
                 'email' => ['Les identifiants sont incorrects.'],
             ]);
@@ -116,7 +115,4 @@ class AuthController extends Controller
             'access_token' => $user->createToken('auth_token')->plainTextToken,
         ]);
     }
-
-  
->>>>>>> origin/feature/dev
 }
