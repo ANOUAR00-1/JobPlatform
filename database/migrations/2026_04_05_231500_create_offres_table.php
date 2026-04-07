@@ -6,35 +6,25 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up(): void
     {
-       Schema::create('offres', function (Blueprint $table) {
+        Schema::create('offres', function (Blueprint $table) {
             $table->id();
             $table->foreignId('entreprise_id')->constrained()->onDelete('cascade');
             $table->string('titre');
             $table->text('description');
-            $table->json('competences_requises')->nullable(); // Required skills as JSON array
-
-            $table->foreignId('ville_id')->constrained('villes')->onDelete('cascade'); // Foreign key to villes table
-
-            $table->string('salaire')->nullable(); // Salary range or amount
+            $table->json('competences_requises')->nullable();
+            $table->foreignId('ville_id')->nullable()->constrained()->onDelete('set null');
+            $table->string('salaire', 100)->nullable();
             $table->enum('type_contrat', ['CDI', 'CDD', 'Stage', 'Freelance'])->default('CDI');
             $table->date('date_expiration')->nullable();
             $table->enum('statut', ['ouverte', 'fermee', 'pourvue'])->default('ouverte');
             $table->timestamps();
         });
-
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
-
         Schema::dropIfExists('offres');
     }
 };
