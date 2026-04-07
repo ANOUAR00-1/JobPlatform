@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+<<<<<<< HEAD
 use App\Http\Requests\CreateOffreRequest;
 use App\Models\Offre;
 use Illuminate\Http\JsonResponse;
@@ -39,5 +40,16 @@ class OffreController extends Controller
             'message' => 'Offre d\'emploi créée avec succès.',
             'data' => ['offre' => $offre],
         ], 201);
+=======
+use App\Http\Controllers\Controller;
+
+use App\Models\Offre;
+
+class OffreController extends Controller
+{
+    public function index()
+    {
+        return response()->json(Offre::all());
+>>>>>>> origin/feature/dev
     }
 }
