@@ -2,15 +2,15 @@
 
 namespace App\Models;
 
-use App\Models\Candidature;
 use App\Models\Entreprise;
-use Database\Factories\UserFactory;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\Relations\HasOne;
-use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
+use App\Models\Candidature;
 use Laravel\Sanctum\HasApiTokens;
+use Database\Factories\UserFactory;
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class User extends Authenticatable
 {
@@ -19,12 +19,12 @@ class User extends Authenticatable
 
     protected $fillable = [
         'email',
-        'motpasse',
+        'password',
         'role',
     ];
 
     protected $hidden = [
-        'motpasse',
+        'password',
         'remember_token',
     ];
 
@@ -32,13 +32,8 @@ class User extends Authenticatable
     {
         return [
             'email_verified_at' => 'datetime',
-            'motpasse' => 'hashed',
+            'password' => 'hashed',
         ];
-    }
-
-    public function getAuthPassword(): string
-    {
-        return $this->motpasse;
     }
 
     /**
