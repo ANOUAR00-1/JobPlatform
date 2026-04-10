@@ -28,4 +28,16 @@ Route::middleware('auth:sanctum')->group(function () {
     // [JNV-22] Apply for job (candidat only)
     Route::post('/candidatures', [CandidatureController::class, 'store'])
         ->middleware('check.role:candidat');
+
+    // [JNV-14] - Task: En tant qu'entreprise, je veux voir les candidatures reçues afin de les gérer.
+    Route::get('/entreprise/candidatures', [CandidatureController::class, 'indexEntreprise'])
+        ->middleware('check.role:entreprise');
+
+    // [JNV-24] - Task: En tant qu'entreprise, je veux accepter une candidature afin de recruter le candidat.
+    Route::post('/candidatures/{candidature}/accepter', [CandidatureController::class, 'accepter'])
+        ->middleware('check.role:entreprise');
+
+    // [JNV-25] - Task: En tant qu'entreprise, je veux refuser une candidature afin de gérer le recrutement.
+    Route::post('/candidatures/{candidature}/refuser', [CandidatureController::class, 'refuser'])
+        ->middleware('check.role:entreprise');
 });
