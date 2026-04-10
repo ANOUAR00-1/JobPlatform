@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\OffreController;
 use App\Http\Controllers\CandidatureController;
+use App\Http\Controllers\CandidatController;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,4 +41,16 @@ Route::middleware('auth:sanctum')->group(function () {
     // [JNV-25] - Task: En tant qu'entreprise, je veux refuser une candidature afin de gérer le recrutement.
     Route::post('/candidatures/{candidature}/refuser', [CandidatureController::class, 'refuser'])
         ->middleware('check.role:entreprise');
+});
+
+
+Route::middleware(['auth:sanctum', 'check.role:candidat'])->group(function () {
+    
+    // JNV-7 and JNV-8: CV
+    
+    Route::post('/candidat/profile', [CandidatController::class, 'updateProfile']); 
+    
+    // JNV-23:  (Candidatures)
+    Route::get('/candidat/candidatures', [CandidatController::class, 'indexCandidatures']);
+
 });

@@ -41,4 +41,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Candidature::class, 'candidat_id');
     }
+    
+        public function candidat()
+    {
+        return $this->hasOne(Candidat::class);
+    }
 }

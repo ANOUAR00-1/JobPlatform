@@ -11,7 +11,7 @@ return new class extends Migration
         Schema::create('candidatures', function (Blueprint $table) {
             $table->id();
             $table->foreignId('offre_id')->constrained()->onDelete('cascade');
-            $table->foreignId('candidat_id')->constrained('users')->onDelete('cascade');
+            $table->foreignId('candidat_id')->constrained('candidats')->onDelete('cascade');
             $table->string('cv_path');
             $table->text('lettre_motivation')->nullable();
             $table->enum('statut', ['en_attente', 'acceptee', 'refusee'])->default('en_attente');

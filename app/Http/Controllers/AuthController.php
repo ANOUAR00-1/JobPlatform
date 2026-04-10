@@ -9,7 +9,6 @@ use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Validation\ValidationException;
 use App\Http\Requests\RegisterEntrepriseRequest;
 
 class AuthController extends Controller
@@ -65,11 +64,12 @@ class AuthController extends Controller
     public function register(Request $request)
     {
         $request->validate([
-            'email' => 'required|email|unique:users',
+           'email' => 'required|email|unique:users',
             'password' => 'required|string|min:6',
             'nom' => 'required|string',
             'prenom' => 'required|string',
             'telephone' => 'required|string',
+            'ville_id' => 'required|exists:villes,id',
         ]);
 
         $user = User::create([
@@ -79,10 +79,12 @@ class AuthController extends Controller
         ]);
 
         $candidat = Candidat::create([
-            'user_id' => $user->id,
+           'user_id' => $user->id,
             'nom' => $request->nom,
             'prenom' => $request->prenom,
             'telephone' => $request->telephone,
+            'email' => $request->email, 
+            'ville_id' => $request->ville_id,
         ]);
 
         return response()->json([
@@ -105,14 +107,14 @@ class AuthController extends Controller
         $user = User::where('email', $request->email)->first();
 
         if (!$user || !Hash::check($request->password, $user->password)) {
-            throw ValidationException::withMessages([
-                'email' => ['Les identifiants sont incorrects.'],
-            ]);
-        }
+        return response()->json(['message' => 'Les identifiants sont incorrects.'], 401);
+    }
+        $profile = ($user->role === 'candidat') ? $user->candidat : $user->entreprise;
 
-        return response()->json([
-            'user' => $user,
-            'access_token' => $user->createToken('auth_token')->plainTextToken,
-        ]);
+            return response()->json([
+                'user' => $user->only(['id', 'email', 'role']),
+                'profile' => $profile,
+                'access_token' => $user->createToken('auth_token')->plainTextToken,
+            ]);
     }
 }
