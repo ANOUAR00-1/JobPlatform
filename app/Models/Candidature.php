@@ -7,13 +7,17 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Candidature extends Model
 {
-    protected $fillable = [
-        'offre_id',
-        'candidat_id',
-        'cv_path',
-        'lettre_motivation',
-        'statut',
-    ];
+   protected $fillable = [
+    'offre_id',
+    'candidat_id',
+    'cv_path',
+    'lettre_motivation',
+    'statut',
+    'date_entretien',
+    'note_evaluation',
+    'commentaire_recruteur',
+];
+    
 
     public function offre(): BelongsTo
     {
