@@ -1,13 +1,15 @@
 <?php
 
 namespace App\Models;
-
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Entreprise extends Model
 {
+    use Notifiable;
+    
     protected $fillable = [
         'user_id',
         'raison_social',

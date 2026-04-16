@@ -7,14 +7,13 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Candidature extends Model
 {
-   protected $fillable = [
+  protected $fillable = [
     'offre_id',
     'candidat_id',
     'cv_path',
     'lettre_motivation',
     'statut',
-    'date_entretien',
-    'note_evaluation',
+    'note_evaluation', 
     'commentaire_recruteur',
 ];
     
@@ -27,5 +26,10 @@ class Candidature extends Model
     public function candidat(): BelongsTo
     {
         return $this->belongsTo(User::class, 'candidat_id');
+    }
+
+   public function entretien()
+    {
+        return $this->hasOne(Entretien::class);
     }
 }

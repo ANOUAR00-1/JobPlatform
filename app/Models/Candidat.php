@@ -1,12 +1,13 @@
 <?php
 
 namespace App\Models;
-
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Candidat extends Model
 {
+    use Notifiable;
     use HasFactory;
     protected $fillable = [
        'nom',
