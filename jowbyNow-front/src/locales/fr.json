@@ -1,0 +1,434 @@
+{
+  "nav": {
+    "home": "ACCUEIL",
+    "offers": "OFFRES",
+    "login": "CONNEXION",
+    "signup": "INSCRIPTION",
+    "dashboard": "MON TABLEAU DE BORD",
+    "theme": "Thème",
+    "language": "Langue"
+  },
+  "common": {
+    "loading": "Chargement...",
+    "cancel": "Annuler",
+    "save": "Enregistrer",
+    "saving": "Enregistrement...",
+    "sending": "Envoi...",
+    "submit": "Soumettre",
+    "close": "Fermer",
+    "back": "Retour",
+    "next": "Suivant",
+    "previous": "Précédent",
+    "search": "Rechercher",
+    "filter": "Filtrer",
+    "apply": "Appliquer",
+    "reset": "Réinitialiser",
+    "delete": "Supprimer",
+    "edit": "Modifier",
+    "view": "Voir",
+    "download": "Télécharger",
+    "upload": "Téléverser"
+  },
+  "notifications": {
+    "title": "Notifications",
+    "new": "Nouveau(x)",
+    "empty": "Aucune notification",
+    "applied_for": "a postulé pour le poste :"
+  },
+  "evaluate_modal": {
+    "title": "Évaluer le candidat",
+    "description": "Veuillez évaluer la candidature de",
+    "note": "Note (sur 5)",
+    "comment": "Commentaire privé",
+    "comment_placeholder": "Notes pour vous-même concernant ce candidat..."
+  },
+  "convoquer_modal": {
+    "title": "Convoquer le Candidat",
+    "description1": "Vous êtes sur le point de convoquer ",
+    "description2": " pour le poste ",
+    "date": "Date de l'entretien",
+    "time": "Heure de l'entretien",
+    "location": "Lieu ou Lien (Meet, Zoom...)",
+    "send": "Envoyer Convocation"
+  },
+  "hero": {
+    "badge": "#1 Plateforme de Recrutement Tech",
+    "title_1": "Recrutez les",
+    "title_2": "meilleurs",
+    "title_3": "talents tech.",
+    "subtitle": "Rapide, convivial et engageant - transformez le recrutement tech en une expérience fluide et rationalisez vos embauches avec la plateforme ultime."
+  },
+  "search": {
+    "title": "Recherche Rapide",
+    "job_placeholder": "TITRE DU POSTE...",
+    "location_placeholder": "LOCALISATION...",
+    "button": "RECHERCHER"
+  },
+  "stats": {
+    "live_roles": "Postes Actifs",
+    "enterprises": "Entreprises",
+    "candidates": "Candidats",
+    "daily_matches": "Matchs / Jour",
+    "placement_rate": "Taux de placement moyen",
+    "active_users": "Utilisateurs spécialisés actifs",
+    "user_rating": "Note moyenne des utilisateurs"
+  },
+  "sectors": {
+    "title": "Explorer\nLes Secteurs",
+    "subtitle": "Découvrez les secteurs les plus demandés en pleine croissance ce trimestre.",
+    "view_all": "VOIR TOUS LES SECTEURS",
+    "software": "GÉNIE LOGICIEL",
+    "design": "DESIGN PRODUIT",
+    "management": "GESTION DE PRODUIT",
+    "mobile": "DÉV MOBILE",
+    "open_roles": "POSTES OUVERTS"
+  },
+  "cta": {
+    "title": "Prêt à rationaliser vos recrutements ?",
+    "subtitle": "Rejoignez des milliers d'entreprises modernes qui ont transformé leur processus de recrutement.",
+    "create_account": "Commencer gratuitement",
+    "login_secure": "Se connecter en toute sécurité"
+  },
+  "cookie": {
+    "title": "Cookies",
+    "message": "Nous utilisons des cookies pour améliorer votre expérience. En savoir plus dans notre",
+    "policy": "Politique de Cookies",
+    "accept": "Accepter",
+    "reject": "Refuser"
+  },
+  "footer": {
+    "description": "La plateforme de recrutement de nouvelle génération connectant les talents exceptionnels aux entreprises ambitieuses.",
+    "navigation": "NAVIGATION",
+    "browse_jobs": "Parcourir les Offres",
+    "create_account": "Créer un Compte",
+    "sign_in": "Se Connecter",
+    "legal": "JURIDIQUE",
+    "privacy": "Politique de Confidentialité",
+    "terms": "Conditions d'Utilisation",
+    "cookies": "Politique des Cookies",
+    "get_started": "COMMENCER",
+    "cta_text": "Rejoignez des milliers d'entreprises qui transforment leur recrutement.",
+    "start_free": "Commencer gratuitement",
+    "rights": "© 2026 JOBYNOW. TOUS DROITS RÉSERVÉS."
+  },
+  "privacy_policy": {
+    "title": "Politique de Confidentialité",
+    "last_updated": "Dernière mise à jour : 18 avril 2026",
+    "intro": "Chez JobyNow, nous prenons votre vie privée au sérieux. Cette Politique de Confidentialité explique comment nous collectons, utilisons, divulguons et protégeons vos informations lorsque vous utilisez notre plateforme de recrutement.",
+    "collection_title": "Informations que nous collectons",
+    "personal_info": "Informations personnelles",
+    "personal_info_desc": "Nous collectons les informations que vous nous fournissez directement, notamment :",
+    "auto_info": "Informations collectées automatiquement",
+    "auto_info_desc": "Lorsque vous accédez à notre plateforme, nous collectons automatiquement certaines informations sur votre appareil, notamment des informations sur votre navigateur Web, votre adresse IP, votre fuseau horaire et les cookies installés sur votre appareil.",
+    "usage_title": "Comment nous utilisons vos informations",
+    "usage_desc": "Nous utilisons les informations que nous collectons pour :",
+    "security_title": "Sécurité des données",
+    "security_desc": "Nous mettons en œuvre des mesures de sécurité techniques et organisationnelles appropriées pour protéger vos informations personnelles contre tout accès, altération, divulgation ou destruction non autorisés.",
+    "rights_title": "Vos droits",
+    "rights_desc": "Selon votre localisation, vous pouvez avoir les droits suivants concernant vos informations personnelles :",
+    "contact_title": "Nous contacter",
+    "contact_desc": "Si vous avez des questions ou des préoccupations concernant cette Politique de Confidentialité ou nos pratiques en matière de données, veuillez nous contacter à :",
+    "contact_team": "Équipe Confidentialité JobyNow",
+    "contact_email": "Email : privacy@jobynow.com",
+    "contact_address": "Adresse : Casablanca, Maroc",
+    "updates": "Nous pouvons mettre à jour cette Politique de Confidentialité de temps à autre. Nous vous informerons de tout changement en publiant la nouvelle Politique de Confidentialité sur cette page et en mettant à jour la date de \"Dernière mise à jour\"."
+  },
+  "terms_of_service": {
+    "title": "Conditions d'Utilisation",
+    "last_updated": "Dernière mise à jour : 18 avril 2026",
+    "intro": "Bienvenue sur JobyNow. Ces Conditions d'Utilisation régissent votre accès et votre utilisation de notre plateforme de recrutement.",
+    "acceptance_title": "Acceptation des conditions",
+    "acceptance_desc": "En créant un compte ou en utilisant notre plateforme, vous reconnaissez avoir lu, compris et accepté d'être lié par ces Conditions et notre Politique de Confidentialité.",
+    "accounts_title": "Comptes utilisateurs",
+    "registration_title": "Inscription au compte",
+    "registration_desc": "Pour accéder à certaines fonctionnalités de notre plateforme, vous devez créer un compte. Vous acceptez de :",
+    "account_types_title": "Types de comptes",
+    "account_types_desc": "JobyNow propose deux types de comptes : les comptes Candidat pour les chercheurs d'emploi et les comptes Entreprise pour les employeurs.",
+    "conduct_title": "Conduite des utilisateurs",
+    "conduct_desc": "Vous acceptez de ne pas utiliser la plateforme pour :",
+    "content_title": "Contenu et propriété intellectuelle",
+    "your_content": "Votre contenu",
+    "our_content": "Notre contenu",
+    "termination_title": "Résiliation",
+    "termination_desc": "Nous nous réservons le droit de suspendre ou de résilier votre compte à tout moment, avec ou sans préavis.",
+    "disclaimer_title": "Clause de non-responsabilité",
+    "disclaimer_desc": "La plateforme est fournie \"telle quelle\" et \"selon disponibilité\" sans garanties d'aucune sorte.",
+    "liability_title": "Limitation de responsabilité",
+    "liability_desc": "Dans toute la mesure permise par la loi, JobyNow ne sera pas responsable des dommages indirects, accessoires, spéciaux, consécutifs ou punitifs.",
+    "law_title": "Loi applicable",
+    "law_desc": "Ces Conditions seront régies et interprétées conformément aux lois du Maroc.",
+    "changes_title": "Modifications des conditions",
+    "changes_desc": "Nous nous réservons le droit de modifier ces Conditions à tout moment.",
+    "contact_title": "Nous contacter",
+    "contact_desc": "Si vous avez des questions concernant ces Conditions, veuillez nous contacter à :",
+    "contact_team": "Équipe Juridique JobyNow",
+    "contact_email": "Email : legal@jobynow.com",
+    "contact_address": "Adresse : Casablanca, Maroc",
+    "acknowledgment": "En utilisant JobyNow, vous reconnaissez avoir lu et compris ces Conditions d'Utilisation et acceptez d'être lié par elles."
+  },
+  "cookie_policy": {
+    "title": "Politique des Cookies",
+    "last_updated": "Dernière mise à jour : 18 avril 2026",
+    "intro": "Cette Politique des Cookies explique comment JobyNow utilise les cookies et les technologies de suivi similaires lorsque vous visitez notre plateforme de recrutement.",
+    "what_are_title": "Que sont les cookies",
+    "what_are_desc": "Les cookies sont de petits fichiers texte placés sur votre appareil lorsque vous visitez un site Web. Ils aident les sites Web à mémoriser vos préférences et à améliorer votre expérience de navigation.",
+    "types_title": "Types de cookies que nous utilisons",
+    "essential_title": "Cookies essentiels",
+    "essential_desc": "Ces cookies sont nécessaires au bon fonctionnement du site Web. Ils permettent des fonctionnalités de base telles que la sécurité, la gestion du réseau et l'accessibilité.",
+    "performance_title": "Cookies de performance",
+    "performance_desc": "Ces cookies collectent des informations sur la façon dont vous utilisez notre site Web, telles que les pages que vous visitez le plus souvent. Ces données nous aident à améliorer les performances de notre site Web.",
+    "functional_title": "Cookies fonctionnels",
+    "functional_desc": "Ces cookies permettent au site Web de mémoriser les choix que vous faites (comme votre préférence de langue) et de fournir des fonctionnalités améliorées et plus personnalisées.",
+    "targeting_title": "Cookies de ciblage",
+    "targeting_desc": "Ces cookies peuvent être définis via notre site par nos partenaires publicitaires pour créer un profil de vos intérêts et vous montrer des publicités pertinentes sur d'autres sites.",
+    "third_party_title": "Cookies tiers",
+    "third_party_desc": "Certains cookies sur notre site sont définis par des services tiers qui apparaissent sur nos pages. Nous ne contrôlons pas ces cookies.",
+    "management_title": "Gestion des cookies",
+    "management_desc": "Vous pouvez contrôler et gérer les cookies de différentes manières. Veuillez noter que la suppression ou le blocage des cookies peut avoir un impact sur votre expérience utilisateur.",
+    "browser_settings": "La plupart des navigateurs Web vous permettent de gérer les cookies via leurs paramètres. Vous pouvez configurer votre navigateur pour refuser les cookies ou supprimer certains cookies.",
+    "contact_title": "Nous contacter",
+    "contact_desc": "Si vous avez des questions sur notre utilisation des cookies, veuillez nous contacter à :",
+    "contact_team": "Équipe Confidentialité JobyNow",
+    "contact_email": "Email : privacy@jobynow.com",
+    "contact_address": "Adresse : Casablanca, Maroc"
+  },
+  "auth": {
+    "login": {
+      "title": "CONNEXION SÉCURISÉE",
+      "subtitle": "Accédez à votre espace JobyNow",
+      "email": "E-MAIL",
+      "password": "MOT DE PASSE",
+      "submit": "SE CONNECTER",
+      "no_account": "Pas encore de compte ?",
+      "signup_link": "S'INSCRIRE",
+      "error_empty": "Veuillez remplir tous les champs",
+      "error_captcha": "Veuillez compléter la vérification de sécurité",
+      "error_captcha_fail": "Erreur captcha. Rechargez la page."
+    },
+    "verify_email": {
+      "title": "VÉRIFIER L'IDENTITÉ",
+      "subtitle_part1": "Nous avons envoyé un code à 6 chiffres à ",
+      "subtitle_part2": ". Entrez-le ci-dessous pour déverrouiller votre espace.",
+      "code_label": "CODE DE VÉRIFICATION",
+      "placeholder": "000000",
+      "btn_verify": "VÉRIFIER & SE CONNECTER",
+      "error_invalid_code": "Veuillez entrer un code valide à 6 chiffres",
+      "error_failed": "La vérification a échoué. Veuillez vérifier votre code."
+    },
+    "register": {
+      "title": "CRÉER UN COMPTE",
+      "subtitle": "Rejoignez la plateforme JobyNow",
+      "role_candidate": "CANDIDAT",
+      "role_enterprise": "ENTREPRISE",
+      "first_name": "PRÉNOM",
+      "last_name": "NOM",
+      "company_name": "RAISON SOCIALE",
+      "email": "E-MAIL",
+      "phone": "TÉLÉPHONE",
+      "address": "ADRESSE",
+      "password": "MOT DE PASSE",
+      "submit": "CRÉER UN COMPTE",
+      "already_have_account": "Vous avez déjà un compte ?",
+      "login_link": "SE CONNECTER",
+      "error_empty": "Veuillez remplir les champs obligatoires",
+      "error_captcha": "Veuillez compléter la vérification de sécurité",
+      "error_captcha_fail": "Erreur captcha. Rechargez la page."
+    },
+    "forgot_password": {
+      "title": "MOT DE PASSE OUBLIÉ",
+      "subtitle": "Entrez votre email pour recevoir un lien de réinitialisation",
+      "email": "E-MAIL",
+      "submit": "ENVOYER LE LIEN",
+      "back_to_login": "Retour à la connexion",
+      "success": "Lien envoyé ! Vérifiez votre email.",
+      "error": "Erreur lors de l'envoi du lien"
+    },
+    "reset": {
+      "title": "Nouveau mot de passe",
+      "subtitle": "Saisissez votre nouveau mot de passe.",
+      "password": "Nouveau mot de passe",
+      "confirm_password": "Confirmer le mot de passe",
+      "submit": "Réinitialiser",
+      "success_title": "Succès",
+      "success_desc": "Votre mot de passe a bien été réinitialisé. Redirection...",
+      "error_empty": "Veuillez remplir tous les champs.",
+      "error_match": "Les mots de passe ne correspondent pas.",
+      "error_token": "Jeton invalide."
+    }
+  },
+  "dashboard_layout": {
+    "enterprise": {
+      "dashboard": "TABLEAU DE BORD",
+      "offers": "OFFRES",
+      "candidatures": "CANDIDATURES"
+    },
+    "candidate": {
+      "dashboard": "TABLEAU DE BORD",
+      "browse_jobs": "PARCOURIR LES OFFRES",
+      "my_applications": "MES CANDIDATURES",
+      "profile": "MON PROFIL"
+    },
+    "logout": "DÉCONNEXION"
+  },
+  "errors": {
+    "unexpected": "Une erreur inattendue s'est produite"
+  },
+  "enterprise_dashboard": {
+    "title": "QG ENTREPRISE",
+    "welcome": "Bon retour",
+    "admin": "Administrateur",
+    "create_offer": "CRÉER UNE OFFRE",
+    "create_new_offer": "CRÉER UNE OFFRE",
+    "stats": {
+      "active_offers": "OFFRES ACTIVES",
+      "new_applications": "NOUVELLES CANDIDATURES",
+      "profile_views": "VUES DU PROFIL"
+    },
+    "actions": {
+      "manage_applications": "GÉRER LES CANDIDATURES",
+      "manage_applications_desc": "Examinez, acceptez ou rejetez les candidatures reçues pour vos offres d'emploi.",
+      "post_role": "PUBLIER UNE OFFRE",
+      "post_role_desc": "Créez une nouvelle offre avec les détails du contrat, exigences et salaire."
+    },
+    "create": {
+      "title": "CRÉER UNE OFFRE",
+      "subtitle": "Remplissez les détails du poste pour publier votre annonce.",
+      "section_general": "INFORMATIONS GÉNÉRALES",
+      "job_title": "TITRE DU POSTE",
+      "job_title_ph": "Ex: Développeur React Senior",
+      "contract_type": "TYPE DE CONTRAT",
+      "location": "LOCALISATION",
+      "salary": "SALAIRE",
+      "salary_ph": "Ex: 12000 MAD",
+      "expiration_date": "DATE D'EXPIRATION",
+      "section_description": "DESCRIPTION DU POSTE",
+      "mission": "DESCRIPTION DES MISSIONS",
+      "mission_ph": "Détaillez les missions et l'environnement technique...",
+      "skills": "COMPÉTENCES REQUISES (séparées par des virgules)",
+      "skills_ph": "Ex: React, Node.js, TypeScript...",
+      "publish_btn": "PUBLIER L'OFFRE",
+      "validation_error": "Titre et description sont obligatoires",
+      "success": "Offre publiée avec succès !",
+      "options": {
+        "internship": "Stage",
+        "remote": "Télétravail"
+      }
+    },
+    "manage_candidatures_desc": "Examinez et traitez les candidatures reçues.",
+    "search_candidate": "RECHERCHER UN CANDIDAT...",
+    "no_applications_yet": "Aucune candidature reçue pour le moment.",
+    "candidate_th": "CANDIDAT",
+    "position_th": "POSTE",
+    "date_th": "DATE",
+    "status_th": "STATUT",
+    "actions_th": "ACTIONS",
+    "manage_offers_desc": "Gérez vos annonces et le suivi de vos offres publiées.",
+    "no_offers_yet": "Vous n'avez publié aucune offre d'emploi.",
+    "no_offers_create_btn": "Créer une Offre",
+    "view_btn": "Voir",
+    "tooltips": {
+      "view_cv": "Voir le CV",
+      "accept": "Accepter",
+      "reject": "Refuser"
+    },
+    "notifications": {
+      "accepted": "Candidature acceptée avec succès",
+      "refused": "Candidature refusée avec succès",
+      "action_error": "Erreur lors de l'action : "
+    },
+    "errors": {
+      "unexpected": "Une erreur inattendue s'est produite"
+    }
+  },
+  "public_jobs": {
+    "title": "POSTES OUVERTS",
+    "subtitle": "Parcourez toutes les annonces actives. Pas de frais cachés. Transparence totale.",
+    "search_placeholder": "RECHERCHER PAR TITRE, MOT CLÉ...",
+    "search_btn": "RECHERCHER",
+    "filters": {
+      "title": "FILTRES",
+      "contract": "TYPE DE CONTRAT",
+      "location": "LOCALISATION"
+    },
+    "no_positions": "Aucun poste disponible pour le moment.",
+    "confidential": "Confidentiel",
+    "not_specified": "Non spécifié",
+    "details": {
+      "back": "RETOUR AUX ANNONCES",
+      "apply": "POSTULER MAINTENANT",
+      "reviewed": "CANDIDATURES EXAMINÉES SOUS 48H",
+      "expires": "Expire le :",
+      "job_details": "DÉTAILS DE L'OFFRE",
+      "about_role": "À PROPOS DU POSTE",
+      "skills": "COMPÉTENCES REQUISES",
+      "contract": "CONTRAT",
+      "location": "LOCALISATION",
+      "salary": "SALAIRE",
+      "posted": "PUBLIÉ LE",
+      "negotiable": "À négocier",
+      "confidential": "Confidentiel",
+      "not_specified": "Non spécifié"
+    },
+    "apply_modal": {
+      "title": "SOUMETTRE LA CANDIDATURE",
+      "cover_letter": "LETTRE DE MOTIVATION (OPTIONNELLE)",
+      "cover_letter_ph": "Exprimez vos motivations...",
+      "cv": "CURRICULUM VITAE (PDF) *",
+      "drop_cv": "GLISSEZ VOTRE CV ICI",
+      "cancel": "ANNULER",
+      "submit": "SOUMETTRE",
+      "error_no_cv": "Veuillez joindre votre CV",
+      "success": "Candidature envoyée avec succès!",
+      "error_submit": "Erreur lors de la postulation",
+      "error_login": "Veuillez vous connecter pour postuler",
+      "error_enterprise": "Les entreprises ne peuvent pas postuler"
+    }
+  },
+  "candidat_dashboard": {
+    "welcome": "BONJOUR, {{name}}",
+    "candidate": "CANDIDAT",
+    "subtitle": "Voici un résumé de votre activité récente sur JobyNow.",
+    "stats": {
+      "applications": "CANDIDATURES ENVOYÉES",
+      "pending": "EN ATTENTE",
+      "interviews": "ENTRETIENS"
+    },
+    "actions": {
+      "my_applications": "MES CANDIDATURES",
+      "my_applications_desc": "Suivez le statut de toutes vos candidatures soumises au même endroit.",
+      "browse": "PARCOURIR LES OFFRES",
+      "browse_desc": "Découvrez de nouvelles opportunités correspondant à vos compétences et à votre niveau d'expérience."
+    },
+    "my_applications": {
+      "title": "MES CANDIDATURES",
+      "subtitle": "Suivez l'état de vos candidatures soumises.",
+      "no_applications": "AUCUNE CANDIDATURE POUR LE MOMENT",
+      "no_applications_desc": "Découvrez les postes ouverts et lancez votre parcours professionnel.",
+      "browse_btn": "PARCOURIR LES POSTES OUVERTS",
+      "deleted_offer": "Offre supprimée",
+      "confidential": "Confidentiel",
+      "not_specified": "N/D",
+      "error_load": "Erreur lors du chargement de vos candidatures"
+    },
+    "profile": {
+      "title": "MON PROFIL",
+      "subtitle": "Gérez vos informations personnelles et votre CV.",
+      "contact_info": "COORDONNÉES",
+      "phone": "Téléphone",
+      "city": "VILLE",
+      "casablanca": "Casablanca",
+      "rabat": "Rabat",
+      "professional_bg": "PARCOURS PROFESSIONNEL",
+      "experience_level": "NIVEAU D'EXPÉRIENCE",
+      "junior": "Junior (0-2 ans)",
+      "medior": "Intermédiaire (2-5 ans)",
+      "senior": "Sénior (5+ ans)",
+      "upload_cv": "TÉLÉCHARGER LE CV (PDF)",
+      "drop_cv": "DÉPOSEZ VOTRE CV ICI",
+      "supported": "Supporté : PDF — Max 2Mo",
+      "save_changes": "ENREGISTRER LES MODIFICATIONS",
+      "success_updated": "Profil mis à jour avec succès",
+      "error_update": "Erreur lors de la mise à jour du profil"
+    }
+  }
+}

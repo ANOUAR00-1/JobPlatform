@@ -1,0 +1,434 @@
+{
+  "nav": {
+    "home": "HOME",
+    "offers": "OFFERS",
+    "login": "LOGIN",
+    "signup": "SIGN UP",
+    "dashboard": "MY DASHBOARD",
+    "theme": "Theme",
+    "language": "Language"
+  },
+  "common": {
+    "loading": "Loading...",
+    "cancel": "Cancel",
+    "save": "Save",
+    "saving": "Saving...",
+    "sending": "Sending...",
+    "submit": "Submit",
+    "close": "Close",
+    "back": "Back",
+    "next": "Next",
+    "previous": "Previous",
+    "search": "Search",
+    "filter": "Filter",
+    "apply": "Apply",
+    "reset": "Reset",
+    "delete": "Delete",
+    "edit": "Edit",
+    "view": "View",
+    "download": "Download",
+    "upload": "Upload"
+  },
+  "notifications": {
+    "title": "Notifications",
+    "new": "New",
+    "empty": "No notifications",
+    "applied_for": "applied for the position:"
+  },
+  "evaluate_modal": {
+    "title": "Evaluate Candidate",
+    "description": "Please evaluate the application of",
+    "note": "Rating (out of 5)",
+    "comment": "Private Comment",
+    "comment_placeholder": "Notes for yourself about this candidate..."
+  },
+  "convoquer_modal": {
+    "title": "Schedule Interview",
+    "description1": "You are about to schedule ",
+    "description2": " for the position ",
+    "date": "Interview Date",
+    "time": "Interview Time",
+    "location": "Location or Link (Meet, Zoom...)",
+    "send": "Send Invitation"
+  },
+  "hero": {
+    "badge": "#1 Tech Recruitment Platform",
+    "title_1": "Recruit the",
+    "title_2": "best",
+    "title_3": "tech talent.",
+    "subtitle": "Fast, user-friendly and engaging - turn tech recruitment into a seamless experience and streamline your hiring with the ultimate platform."
+  },
+  "search": {
+    "title": "Quick Search",
+    "job_placeholder": "JOB TITLE...",
+    "location_placeholder": "LOCATION...",
+    "button": "SEARCH ROLES"
+  },
+  "stats": {
+    "live_roles": "Live Roles",
+    "enterprises": "Enterprises",
+    "candidates": "Candidates",
+    "daily_matches": "Daily Matches",
+    "placement_rate": "Average placement rate",
+    "active_users": "Active specialized users",
+    "user_rating": "Average user rating"
+  },
+  "sectors": {
+    "title": "Explore\nSectors",
+    "subtitle": "Dive into our top requested industry sectors scaling rapidly this quarter.",
+    "view_all": "VIEW ALL SECTORS",
+    "software": "SOFTWARE ENGINEERING",
+    "design": "PRODUCT DESIGN",
+    "management": "PRODUCT MANAGEMENT",
+    "mobile": "MOBILE DEV",
+    "open_roles": "OPEN ROLES"
+  },
+  "cta": {
+    "title": "Ready to streamline your hiring?",
+    "subtitle": "Join thousands of modern companies who have transformed their recruitment process.",
+    "create_account": "Start for free",
+    "login_secure": "Login securely"
+  },
+  "cookie": {
+    "title": "Cookie Time",
+    "message": "We use cookies to enhance your experience. Learn more in our",
+    "policy": "Cookie Policy",
+    "accept": "Accept",
+    "reject": "Reject"
+  },
+  "footer": {
+    "description": "The next-generation recruitment platform connecting exceptional talents with ambitious companies.",
+    "navigation": "NAVIGATION",
+    "browse_jobs": "Browse Jobs",
+    "create_account": "Create Account",
+    "sign_in": "Sign In",
+    "legal": "LEGAL",
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Service",
+    "cookies": "Cookie Policy",
+    "get_started": "GET STARTED",
+    "cta_text": "Join thousands of companies transforming their recruitment.",
+    "start_free": "Start for free",
+    "rights": "© 2026 JOBYNOW. ALL RIGHTS RESERVED."
+  },
+  "privacy_policy": {
+    "title": "Privacy Policy",
+    "last_updated": "Last updated: April 18, 2026",
+    "intro": "At JobyNow, we take your privacy seriously. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our recruitment platform.",
+    "collection_title": "Information We Collect",
+    "personal_info": "Personal Information",
+    "personal_info_desc": "We collect information that you provide directly to us, including:",
+    "auto_info": "Automatically Collected Information",
+    "auto_info_desc": "When you access our platform, we automatically collect certain information about your device, including information about your web browser, IP address, time zone, and cookies installed on your device.",
+    "usage_title": "How We Use Your Information",
+    "usage_desc": "We use the information we collect to:",
+    "security_title": "Data Security",
+    "security_desc": "We implement appropriate technical and organizational security measures to protect your personal information against unauthorized access, alteration, disclosure, or destruction.",
+    "rights_title": "Your Rights",
+    "rights_desc": "Depending on your location, you may have the following rights regarding your personal information:",
+    "contact_title": "Contact Us",
+    "contact_desc": "If you have questions or concerns about this Privacy Policy or our data practices, please contact us at:",
+    "contact_team": "JobyNow Privacy Team",
+    "contact_email": "Email: privacy@jobynow.com",
+    "contact_address": "Address: Casablanca, Morocco",
+    "updates": "We may update this Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page and updating the \"Last updated\" date."
+  },
+  "terms_of_service": {
+    "title": "Terms of Service",
+    "last_updated": "Last updated: April 18, 2026",
+    "intro": "Welcome to JobyNow. These Terms of Service govern your access to and use of our recruitment platform.",
+    "acceptance_title": "Acceptance of Terms",
+    "acceptance_desc": "By creating an account or using our platform, you acknowledge that you have read, understood, and agree to be bound by these Terms and our Privacy Policy.",
+    "accounts_title": "User Accounts",
+    "registration_title": "Account Registration",
+    "registration_desc": "To access certain features of our platform, you must register for an account. You agree to:",
+    "account_types_title": "Account Types",
+    "account_types_desc": "JobyNow offers two types of accounts: Candidate accounts for job seekers and Enterprise accounts for employers.",
+    "conduct_title": "User Conduct",
+    "conduct_desc": "You agree not to use the platform to:",
+    "content_title": "Content and Intellectual Property",
+    "your_content": "Your Content",
+    "our_content": "Our Content",
+    "termination_title": "Termination",
+    "termination_desc": "We reserve the right to suspend or terminate your account at any time, with or without notice.",
+    "disclaimer_title": "Disclaimer of Warranties",
+    "disclaimer_desc": "The platform is provided \"as is\" and \"as available\" without warranties of any kind.",
+    "liability_title": "Limitation of Liability",
+    "liability_desc": "To the maximum extent permitted by law, JobyNow shall not be liable for any indirect, incidental, special, consequential, or punitive damages.",
+    "law_title": "Governing Law",
+    "law_desc": "These Terms shall be governed by and construed in accordance with the laws of Morocco.",
+    "changes_title": "Changes to Terms",
+    "changes_desc": "We reserve the right to modify these Terms at any time.",
+    "contact_title": "Contact Us",
+    "contact_desc": "If you have any questions about these Terms, please contact us at:",
+    "contact_team": "JobyNow Legal Team",
+    "contact_email": "Email: legal@jobynow.com",
+    "contact_address": "Address: Casablanca, Morocco",
+    "acknowledgment": "By using JobyNow, you acknowledge that you have read and understood these Terms of Service and agree to be bound by them."
+  },
+  "cookie_policy": {
+    "title": "Cookie Policy",
+    "last_updated": "Last updated: April 18, 2026",
+    "intro": "This Cookie Policy explains how JobyNow uses cookies and similar tracking technologies when you visit our recruitment platform.",
+    "what_are_title": "What Are Cookies",
+    "what_are_desc": "Cookies are small text files that are placed on your device when you visit a website. They help websites remember your preferences and improve your browsing experience.",
+    "types_title": "Types of Cookies We Use",
+    "essential_title": "Essential Cookies",
+    "essential_desc": "These cookies are necessary for the website to function properly. They enable core functionality such as security, network management, and accessibility.",
+    "performance_title": "Performance Cookies",
+    "performance_desc": "These cookies collect information about how you use our website, such as which pages you visit most often. This data helps us improve our website's performance.",
+    "functional_title": "Functional Cookies",
+    "functional_desc": "These cookies allow the website to remember choices you make (such as your language preference) and provide enhanced, more personalized features.",
+    "targeting_title": "Targeting Cookies",
+    "targeting_desc": "These cookies may be set through our site by our advertising partners to build a profile of your interests and show you relevant ads on other sites.",
+    "third_party_title": "Third-Party Cookies",
+    "third_party_desc": "Some cookies on our site are set by third-party services that appear on our pages. We do not control these cookies.",
+    "management_title": "Cookie Management",
+    "management_desc": "You can control and manage cookies in various ways. Please note that removing or blocking cookies can impact your user experience.",
+    "browser_settings": "Most web browsers allow you to manage cookies through their settings. You can set your browser to refuse cookies or delete certain cookies.",
+    "contact_title": "Contact Us",
+    "contact_desc": "If you have questions about our use of cookies, please contact us at:",
+    "contact_team": "JobyNow Privacy Team",
+    "contact_email": "Email: privacy@jobynow.com",
+    "contact_address": "Address: Casablanca, Morocco"
+  },
+  "auth": {
+    "login": {
+      "title": "SECURE LOGIN",
+      "subtitle": "Access your JobyNow workspace",
+      "email": "EMAIL",
+      "password": "PASSWORD",
+      "submit": "LOGIN",
+      "no_account": "No account yet?",
+      "signup_link": "SIGN UP",
+      "error_empty": "Please fill in all fields",
+      "error_captcha": "Please complete the security check",
+      "error_captcha_fail": "Captcha error. Please reload the page."
+    },
+    "verify_email": {
+      "title": "VERIFY IDENTITY",
+      "subtitle_part1": "We've sent a 6-digit code to ",
+      "subtitle_part2": ". Enter it below to unlock your workspace.",
+      "code_label": "VERIFICATION CODE",
+      "placeholder": "000000",
+      "btn_verify": "VERIFY & LOGIN",
+      "error_invalid_code": "Please enter a valid 6-digit code",
+      "error_failed": "Verification failed. Please check your code."
+    },
+    "register": {
+      "title": "CREATE ACCOUNT",
+      "subtitle": "Join the JobyNow platform",
+      "role_candidate": "CANDIDATE",
+      "role_enterprise": "ENTERPRISE",
+      "first_name": "FIRST NAME",
+      "last_name": "LAST NAME",
+      "company_name": "COMPANY NAME",
+      "email": "EMAIL",
+      "phone": "PHONE",
+      "address": "ADDRESS",
+      "password": "PASSWORD",
+      "submit": "CREATE ACCOUNT",
+      "already_have_account": "Already have an account?",
+      "login_link": "LOGIN",
+      "error_empty": "Please fill in all required fields",
+      "error_captcha": "Please complete the security check",
+      "error_captcha_fail": "Captcha error. Please reload the page."
+    },
+    "forgot_password": {
+      "title": "FORGOT PASSWORD",
+      "subtitle": "Enter your email to receive a reset link",
+      "email": "EMAIL",
+      "submit": "SEND RESET LINK",
+      "back_to_login": "Back to Login",
+      "success": "Reset link sent! Check your email.",
+      "error": "Error sending reset link"
+    },
+    "reset": {
+      "title": "New Password",
+      "subtitle": "Enter your new password.",
+      "password": "New Password",
+      "confirm_password": "Confirm Password",
+      "submit": "Reset Password",
+      "success_title": "Success",
+      "success_desc": "Your password has been reset successfully. Redirecting...",
+      "error_empty": "Please fill in all fields.",
+      "error_match": "Passwords do not match.",
+      "error_token": "Invalid token."
+    }
+  },
+  "dashboard_layout": {
+    "enterprise": {
+      "dashboard": "DASHBOARD",
+      "offers": "OFFERS",
+      "candidatures": "APPLICATIONS"
+    },
+    "candidate": {
+      "dashboard": "DASHBOARD",
+      "browse_jobs": "BROWSE JOBS",
+      "my_applications": "MY APPLICATIONS",
+      "profile": "MY PROFILE"
+    },
+    "logout": "LOGOUT"
+  },
+  "errors": {
+    "unexpected": "An unexpected error occurred"
+  },
+  "enterprise_dashboard": {
+    "title": "ENTERPRISE HQ",
+    "welcome": "Welcome back",
+    "admin": "Administrator",
+    "create_offer": "CREATE NEW OFFER",
+    "create_new_offer": "CREATE NEW OFFER",
+    "stats": {
+      "active_offers": "ACTIVE OFFERS",
+      "new_applications": "NEW APPLICATIONS",
+      "profile_views": "PROFILE VIEWS"
+    },
+    "actions": {
+      "manage_applications": "MANAGE APPLICATIONS",
+      "manage_applications_desc": "Review, accept, or reject incoming candidatures from your job postings.",
+      "post_role": "POST A NEW ROLE",
+      "post_role_desc": "Create a new job listing with contract details, requirements, and salary information."
+    },
+    "create": {
+      "title": "CREATE NEW OFFER",
+      "subtitle": "Fill in the position details to publish your listing.",
+      "section_general": "GENERAL INFORMATION",
+      "job_title": "JOB TITLE",
+      "job_title_ph": "e.g. Senior React Developer",
+      "contract_type": "CONTRACT TYPE",
+      "location": "LOCATION",
+      "salary": "SALARY",
+      "salary_ph": "e.g. 12000 MAD",
+      "expiration_date": "EXPIRATION DATE",
+      "section_description": "JOB DESCRIPTION",
+      "mission": "MISSION DESCRIPTION",
+      "mission_ph": "Detail the missions and technical environment...",
+      "skills": "REQUIRED SKILLS (comma-separated)",
+      "skills_ph": "e.g. React, Node.js, TypeScript...",
+      "publish_btn": "PUBLISH OFFER",
+      "validation_error": "Title and description are required",
+      "success": "Offer published successfully!",
+      "options": {
+        "internship": "Internship",
+        "remote": "Remote"
+      }
+    },
+    "manage_candidatures_desc": "Review and action incoming applications.",
+    "search_candidate": "SEARCH CANDIDATE...",
+    "no_applications_yet": "No applications received yet.",
+    "candidate_th": "CANDIDATE",
+    "position_th": "POSITION",
+    "date_th": "DATE",
+    "status_th": "STATUS",
+    "actions_th": "ACTIONS",
+    "manage_offers_desc": "Manage your published job tracking and listings.",
+    "no_offers_yet": "You haven't listed any job offers yet.",
+    "no_offers_create_btn": "Create Offer",
+    "view_btn": "View",
+    "tooltips": {
+      "view_cv": "View CV",
+      "accept": "Accept",
+      "reject": "Reject"
+    },
+    "notifications": {
+      "accepted": "Application accepted successfully",
+      "refused": "Application refused successfully",
+      "action_error": "Error during action: "
+    },
+    "errors": {
+      "unexpected": "An unexpected error occurred"
+    }
+  },
+  "public_jobs": {
+    "title": "OPEN ROLES",
+    "subtitle": "Browse every active position. No hidden listings, no paywalls. Stark transparency.",
+    "search_placeholder": "SEARCH BY TITLE, KEYWORD...",
+    "search_btn": "SEARCH",
+    "filters": {
+      "title": "FILTERS",
+      "contract": "CONTRACT TYPE",
+      "location": "LOCATION"
+    },
+    "no_positions": "No positions available at this time.",
+    "confidential": "Confidential",
+    "not_specified": "Not specified",
+    "details": {
+      "back": "BACK TO LISTINGS",
+      "apply": "APPLY NOW",
+      "reviewed": "APPLICATIONS REVIEWED WITHIN 48H",
+      "expires": "Expires:",
+      "job_details": "JOB DETAILS",
+      "about_role": "ABOUT THE ROLE",
+      "skills": "REQUIRED SKILLS",
+      "contract": "CONTRACT",
+      "location": "LOCATION",
+      "salary": "SALARY",
+      "posted": "POSTED",
+      "negotiable": "Negotiable",
+      "confidential": "Confidential",
+      "not_specified": "Not specified"
+    },
+    "apply_modal": {
+      "title": "SUBMIT APPLICATION",
+      "cover_letter": "COVER LETTER (OPTIONAL)",
+      "cover_letter_ph": "Express your motivations...",
+      "cv": "CURRICULUM VITAE (PDF) *",
+      "drop_cv": "DROP YOUR CV HERE",
+      "cancel": "CANCEL",
+      "submit": "SUBMIT",
+      "error_no_cv": "Please attach your CV",
+      "success": "Application sent successfully!",
+      "error_submit": "Error submitting application",
+      "error_login": "Please log in to apply",
+      "error_enterprise": "Enterprises cannot apply"
+    }
+  },
+  "candidat_dashboard": {
+    "welcome": "HELLO, {{name}}",
+    "candidate": "CANDIDATE",
+    "subtitle": "Here's a summary of your recent activity on JobyNow.",
+    "stats": {
+      "applications": "APPLICATIONS SENT",
+      "pending": "PENDING",
+      "interviews": "INTERVIEWS"
+    },
+    "actions": {
+      "my_applications": "MY APPLICATIONS",
+      "my_applications_desc": "Track the status of all your submitted applications in one place.",
+      "browse": "BROWSE OPEN ROLES",
+      "browse_desc": "Discover new opportunities matching your skills and experience level."
+    },
+    "my_applications": {
+      "title": "MY APPLICATIONS",
+      "subtitle": "Track the status of your submitted candidatures.",
+      "no_applications": "NO APPLICATIONS YET",
+      "no_applications_desc": "Discover open roles and kickstart your career journey.",
+      "browse_btn": "BROWSE OPEN ROLES",
+      "deleted_offer": "Deleted Offer",
+      "confidential": "Confidential",
+      "not_specified": "N/A",
+      "error_load": "Error loading your applications"
+    },
+    "profile": {
+      "title": "MY PROFILE",
+      "subtitle": "Manage your personal information and CV.",
+      "contact_info": "CONTACT INFORMATION",
+      "phone": "Phone",
+      "city": "CITY",
+      "casablanca": "Casablanca",
+      "rabat": "Rabat",
+      "professional_bg": "PROFESSIONAL BACKGROUND",
+      "experience_level": "EXPERIENCE LEVEL",
+      "junior": "Junior (0-2 yrs)",
+      "medior": "Mid-Level (2-5 yrs)",
+      "senior": "Senior (5+ yrs)",
+      "upload_cv": "UPLOAD CV (PDF)",
+      "drop_cv": "DROP YOUR CV HERE",
+      "supported": "Supported: PDF — Max 2MB",
+      "save_changes": "SAVE CHANGES",
+      "success_updated": "Profile updated successfully",
+      "error_update": "Error updating profile"
+    }
+  }
+}
