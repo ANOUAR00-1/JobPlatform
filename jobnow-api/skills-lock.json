@@ -1,0 +1,10 @@
+{
+  "version": 1,
+  "skills": {
+    "senior-qa-engineer": {
+      "source": "javalenciacai/qaskills",
+      "sourceType": "github",
+      "computedHash": "7dcfd0f3a87714b091068318840a02237dc2f04240b8e75a9fba64c7de194f2c"
+    }
+  }
+}
