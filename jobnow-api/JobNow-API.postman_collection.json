@@ -1,0 +1,662 @@
+{
+	"info": {
+		"_postman_id": "a1b2c3d4-e5f6-47a8-98b9-jobynow2026",
+		"name": "JobyNow API — Complete Collection v2",
+		"description": "**Complete coverage of all JobyNow REST API endpoints**\n\n**Quick Setup:**\n1. Set `base_url` variable to `http://localhost:8000/api`\n2. Run **Login** request - token auto-saves to `auth_token`\n3. Test away!\n\n**Notes:**\n- All protected endpoints use Bearer token authentication\n- File uploads use `form-data` body type\n- For testing: use `XXXX-TEST-TOKEN` for Turnstile (or configure test mode)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "🔐 Authentication",
+			"item": [
+				{
+					"name": "Register Candidat",
+					"request": {
+						"method": "POST",
+						"header": [
+							{ "key": "Accept", "value": "application/json" },
+							{ "key": "Content-Type", "value": "application/json" }
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"email\": \"candidat@test.com\",\n  \"password\": \"password123\",\n  \"nom\": \"Doe\",\n  \"prenom\": \"John\",\n  \"telephone\": \"0612345678\",\n  \"ville_id\": 1,\n  \"cf-turnstile-response\": \"XXXX-TEST-TOKEN\"\n}",
+							"options": { "raw": { "language": "json" } }
+						},
+						"url": {
+							"raw": "{{base_url}}/register",
+							"host": ["{{base_url}}"],
+							"path": ["register"]
+						},
+						"description": "Register a new candidat account. Sends a 6-digit verification code by email."
+					},
+					"response": []
+				},
+				{
+					"name": "Verify Email (OTP)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const res = pm.response.json();",
+									"if (res.access_token) {",
+									"    pm.collectionVariables.set('auth_token', res.access_token);",
+									"    console.log('✅ Token saved:', res.access_token);",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{ "key": "Accept", "value": "application/json" },
+							{ "key": "Content-Type", "value": "application/json" }
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"email\": \"candidat@test.com\",\n  \"code\": \"123456\"\n}",
+							"options": { "raw": { "language": "json" } }
+						},
+						"url": {
+							"raw": "{{base_url}}/verify-email",
+							"host": ["{{base_url}}"],
+							"path": ["verify-email"]
+						},
+						"description": "Verify candidat email with 6-digit OTP. Returns access_token on success."
+					},
+					"response": []
+				},
+				{
+					"name": "Register Entreprise",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const res = pm.response.json();",
+									"if (res.data && res.data.token) {",
+									"    pm.collectionVariables.set('auth_token', res.data.token);",
+									"    console.log('✅ Token saved:', res.data.token);",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{ "key": "Accept", "value": "application/json" },
+							{ "key": "Content-Type", "value": "application/json" }
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"email\": \"entreprise@test.com\",\n  \"password\": \"password123\",\n  \"password_confirmation\": \"password123\",\n  \"raison_social\": \"Tech Corp Maroc\",\n  \"adresse\": \"123 Boulevard Zerktouni, Casablanca\",\n  \"telephone\": \"0522123456\",\n  \"cf-turnstile-response\": \"XXXX-TEST-TOKEN\"\n}",
+							"options": { "raw": { "language": "json" } }
+						},
+						"url": {
+							"raw": "{{base_url}}/auth/register/entreprise",
+							"host": ["{{base_url}}"],
+							"path": ["auth", "register", "entreprise"]
+						},
+						"description": "Register entreprise account. Returns token immediately (no email verification)."
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const res = pm.response.json();",
+									"if (res.access_token) {",
+									"    pm.collectionVariables.set('auth_token', res.access_token);",
+									"    console.log('✅ Token saved:', res.access_token);",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{ "key": "Accept", "value": "application/json" },
+							{ "key": "Content-Type", "value": "application/json" }
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"email\": \"entreprise@test.com\",\n  \"password\": \"password123\",\n  \"cf-turnstile-response\": \"XXXX-TEST-TOKEN\"\n}",
+							"options": { "raw": { "language": "json" } }
+						},
+						"url": {
+							"raw": "{{base_url}}/login",
+							"host": ["{{base_url}}"],
+							"path": ["login"]
+						},
+						"description": "Login for any user type. Auto-saves token to collection variable."
+					},
+					"response": []
+				},
+				{
+					"name": "Get Authenticated User",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [{ "key": "token", "value": "{{auth_token}}", "type": "string" }]
+						},
+						"method": "GET",
+						"header": [
+							{ "key": "Accept", "value": "application/json" }
+						],
+						"url": {
+							"raw": "{{base_url}}/user",
+							"host": ["{{base_url}}"],
+							"path": ["user"]
+						},
+						"description": "🔐 Get current authenticated user data with profile."
+					},
+					"response": []
+				},
+				{
+					"name": "Forgot Password",
+					"request": {
+						"method": "POST",
+						"header": [
+							{ "key": "Accept", "value": "application/json" },
+							{ "key": "Content-Type", "value": "application/json" }
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"email\": \"candidat@test.com\"\n}",
+							"options": { "raw": { "language": "json" } }
+						},
+						"url": {
+							"raw": "{{base_url}}/forgot-password",
+							"host": ["{{base_url}}"],
+							"path": ["forgot-password"]
+						},
+						"description": "Send password reset link to email."
+					},
+					"response": []
+				},
+				{
+					"name": "Reset Password",
+					"request": {
+						"method": "POST",
+						"header": [
+							{ "key": "Accept", "value": "application/json" },
+							{ "key": "Content-Type", "value": "application/json" }
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"token\": \"RESET_TOKEN_FROM_EMAIL\",\n  \"email\": \"candidat@test.com\",\n  \"password\": \"newpassword123\",\n  \"password_confirmation\": \"newpassword123\"\n}",
+							"options": { "raw": { "language": "json" } }
+						},
+						"url": {
+							"raw": "{{base_url}}/reset-password",
+							"host": ["{{base_url}}"],
+							"path": ["reset-password"]
+						},
+						"description": "Reset password using token from email."
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "🌐 OAuth",
+			"item": [
+				{
+					"name": "Google OAuth - Redirect",
+					"request": {
+						"method": "GET",
+						"header": [
+							{ "key": "Accept", "value": "application/json" }
+						],
+						"url": {
+							"raw": "{{base_url}}/auth/google",
+							"host": ["{{base_url}}"],
+							"path": ["auth", "google"]
+						},
+						"description": "Redirects to Google OAuth consent screen. Use in browser."
+					},
+					"response": []
+				},
+				{
+					"name": "Google OAuth - Callback",
+					"request": {
+						"method": "GET",
+						"header": [
+							{ "key": "Accept", "value": "application/json" }
+						],
+						"url": {
+							"raw": "{{base_url}}/auth/google/callback?code=GOOGLE_AUTH_CODE",
+							"host": ["{{base_url}}"],
+							"path": ["auth", "google", "callback"],
+							"query": [
+								{
+									"key": "code",
+									"value": "GOOGLE_AUTH_CODE",
+									"description": "Authorization code from Google"
+								}
+							]
+						},
+						"description": "Google OAuth callback handler. Returns user data and token."
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "📋 Public - Job Offers",
+			"item": [
+				{
+					"name": "List All Active Jobs",
+					"request": {
+						"method": "GET",
+						"header": [
+							{ "key": "Accept", "value": "application/json" }
+						],
+						"url": {
+							"raw": "{{base_url}}/jobs",
+							"host": ["{{base_url}}"],
+							"path": ["jobs"]
+						},
+						"description": "Public endpoint. Returns all active job offers with company and city info."
+					},
+					"response": []
+				},
+				{
+					"name": "Get Single Job by ID",
+					"request": {
+						"method": "GET",
+						"header": [
+							{ "key": "Accept", "value": "application/json" }
+						],
+						"url": {
+							"raw": "{{base_url}}/jobs/{{job_id}}",
+							"host": ["{{base_url}}"],
+							"path": ["jobs", "{{job_id}}"]
+						},
+						"description": "Public endpoint. Returns full details of a single job offer."
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "🤖 AI Chatbot (JobyBot)",
+			"item": [
+				{
+					"name": "Ask JobyBot",
+					"request": {
+						"method": "POST",
+						"header": [
+							{ "key": "Accept", "value": "application/json" },
+							{ "key": "Content-Type", "value": "application/json" }
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"message\": \"Bonjour! Quelles sont les offres disponibles à Casablanca?\"\n}",
+							"options": { "raw": { "language": "json" } }
+						},
+						"url": {
+							"raw": "{{base_url}}/chat",
+							"host": ["{{base_url}}"],
+							"path": ["chat"]
+						},
+						"description": "Public AI chatbot powered by Groq (Llama 3.1). Supports EN/FR/Darija with RAG context."
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "🏢 Espace Entreprise",
+			"item": [
+				{
+					"name": "Create Job Offer",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [{ "key": "token", "value": "{{auth_token}}", "type": "string" }]
+						},
+						"method": "POST",
+						"header": [
+							{ "key": "Accept", "value": "application/json" },
+							{ "key": "Content-Type", "value": "application/json" }
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"titre\": \"Développeur Full Stack Laravel / React\",\n  \"description\": \"Nous cherchons un développeur Full Stack passionné pour renforcer notre équipe tech. 3 ans d'expérience minimum.\",\n  \"type_contrat\": \"CDI\",\n  \"competences_requises\": [\"Laravel\", \"React\", \"MySQL\", \"Docker\", \"Git\"],\n  \"ville_id\": 1,\n  \"salaire\": \"12000 MAD\",\n  \"date_expiration\": \"2026-12-31\"\n}",
+							"options": { "raw": { "language": "json" } }
+						},
+						"url": {
+							"raw": "{{base_url}}/offres",
+							"host": ["{{base_url}}"],
+							"path": ["offres"]
+						},
+						"description": "🔐 Entreprise only. Create a new job offer."
+					},
+					"response": []
+				},
+				{
+					"name": "List My Offers",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [{ "key": "token", "value": "{{auth_token}}", "type": "string" }]
+						},
+						"method": "GET",
+						"header": [
+							{ "key": "Accept", "value": "application/json" }
+						],
+						"url": {
+							"raw": "{{base_url}}/entreprise/offres",
+							"host": ["{{base_url}}"],
+							"path": ["entreprise", "offres"]
+						},
+						"description": "🔐 Entreprise only. Returns all job offers posted by this enterprise."
+					},
+					"response": []
+				},
+				{
+					"name": "List Received Applications",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [{ "key": "token", "value": "{{auth_token}}", "type": "string" }]
+						},
+						"method": "GET",
+						"header": [
+							{ "key": "Accept", "value": "application/json" }
+						],
+						"url": {
+							"raw": "{{base_url}}/entreprise/candidatures",
+							"host": ["{{base_url}}"],
+							"path": ["entreprise", "candidatures"]
+						},
+						"description": "🔐 Entreprise only. Returns all applications received for this enterprise's offers."
+					},
+					"response": []
+				},
+				{
+					"name": "Accept Application",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [{ "key": "token", "value": "{{auth_token}}", "type": "string" }]
+						},
+						"method": "POST",
+						"header": [
+							{ "key": "Accept", "value": "application/json" }
+						],
+						"url": {
+							"raw": "{{base_url}}/candidatures/{{candidature_id}}/accepter",
+							"host": ["{{base_url}}"],
+							"path": ["candidatures", "{{candidature_id}}", "accepter"]
+						},
+						"description": "🔐 Entreprise only. Accept a candidature. Updates status to 'acceptee'."
+					},
+					"response": []
+				},
+				{
+					"name": "Refuse Application",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [{ "key": "token", "value": "{{auth_token}}", "type": "string" }]
+						},
+						"method": "POST",
+						"header": [
+							{ "key": "Accept", "value": "application/json" }
+						],
+						"url": {
+							"raw": "{{base_url}}/candidatures/{{candidature_id}}/refuser",
+							"host": ["{{base_url}}"],
+							"path": ["candidatures", "{{candidature_id}}", "refuser"]
+						},
+						"description": "🔐 Entreprise only. Refuse a candidature. Updates status to 'refusee'."
+					},
+					"response": []
+				},
+				{
+					"name": "Evaluate Candidate",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [{ "key": "token", "value": "{{auth_token}}", "type": "string" }]
+						},
+						"method": "PUT",
+						"header": [
+							{ "key": "Accept", "value": "application/json" },
+							{ "key": "Content-Type", "value": "application/json" }
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"note_evaluation\": 85,\n  \"commentaire_recruteur\": \"Excellent profil technique. Très bonne maîtrise de Laravel et React. Communication claire et professionnelle.\"\n}",
+							"options": { "raw": { "language": "json" } }
+						},
+						"url": {
+							"raw": "{{base_url}}/candidatures/{{candidature_id}}/evaluate",
+							"host": ["{{base_url}}"],
+							"path": ["candidatures", "{{candidature_id}}", "evaluate"]
+						},
+						"description": "🔐 Entreprise only. Evaluate a candidate with a score (0-100) and comments."
+					},
+					"response": []
+				},
+				{
+					"name": "Send Interview Convocation",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [{ "key": "token", "value": "{{auth_token}}", "type": "string" }]
+						},
+						"method": "POST",
+						"header": [
+							{ "key": "Accept", "value": "application/json" },
+							{ "key": "Content-Type", "value": "application/json" }
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"date_entretien\": \"2026-05-15\",\n  \"heure_entretien\": \"10:00\",\n  \"lieu_entretien\": \"123 Boulevard Zerktouni, Casablanca - Bureau 5ème étage\",\n  \"type_entretien\": \"Présentiel\"\n}",
+							"options": { "raw": { "language": "json" } }
+						},
+						"url": {
+							"raw": "{{base_url}}/candidatures/{{candidature_id}}/convoquer",
+							"host": ["{{base_url}}"],
+							"path": ["candidatures", "{{candidature_id}}", "convoquer"]
+						},
+						"description": "🔐 Entreprise only. Send interview invitation to candidate. Updates status to 'convoquée'."
+					},
+					"response": []
+				},
+				{
+					"name": "List Notifications",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [{ "key": "token", "value": "{{auth_token}}", "type": "string" }]
+						},
+						"method": "GET",
+						"header": [
+							{ "key": "Accept", "value": "application/json" }
+						],
+						"url": {
+							"raw": "{{base_url}}/entreprise/notifications",
+							"host": ["{{base_url}}"],
+							"path": ["entreprise", "notifications"]
+						},
+						"description": "🔐 Entreprise only. Get all notifications for this enterprise."
+					},
+					"response": []
+				},
+				{
+					"name": "Mark Notification as Read",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [{ "key": "token", "value": "{{auth_token}}", "type": "string" }]
+						},
+						"method": "POST",
+						"header": [
+							{ "key": "Accept", "value": "application/json" }
+						],
+						"url": {
+							"raw": "{{base_url}}/entreprise/notifications/{{notification_id}}/read",
+							"host": ["{{base_url}}"],
+							"path": ["entreprise", "notifications", "{{notification_id}}", "read"]
+						},
+						"description": "🔐 Entreprise only. Mark a specific notification as read."
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "👤 Espace Candidat",
+			"item": [
+				{
+					"name": "Update Profile & Upload CV",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [{ "key": "token", "value": "{{auth_token}}", "type": "string" }]
+						},
+						"method": "POST",
+						"header": [
+							{ "key": "Accept", "value": "application/json" }
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{ "key": "telephone", "value": "0612345678", "type": "text" },
+								{ "key": "ville_id", "value": "1", "type": "text", "description": "1=Casablanca, 2=Rabat" },
+								{
+									"key": "experience",
+									"value": "Junior",
+									"type": "text",
+									"description": "Junior | Medior | Senior"
+								},
+								{
+									"key": "cv",
+									"type": "file",
+									"src": [],
+									"description": "PDF or DOCX file — max 2MB"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/candidat/profile",
+							"host": ["{{base_url}}"],
+							"path": ["candidat", "profile"]
+						},
+						"description": "🔐 Candidat only. Update profile and upload CV (PDF/DOCX, max 2MB)."
+					},
+					"response": []
+				},
+				{
+					"name": "Apply for a Job",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [{ "key": "token", "value": "{{auth_token}}", "type": "string" }]
+						},
+						"method": "POST",
+						"header": [
+							{ "key": "Accept", "value": "application/json" }
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "offre_id",
+									"value": "{{job_id}}",
+									"type": "text",
+									"description": "ID of the job offer"
+								},
+								{
+									"key": "lettre_motivation",
+									"value": "Je suis très motivé pour ce poste. Avec 3 ans d'expérience en développement Laravel et React, je suis convaincu de pouvoir apporter une valeur ajoutée significative à votre équipe.",
+									"type": "text",
+									"description": "Optional cover letter"
+								},
+								{
+									"key": "cv",
+									"type": "file",
+									"src": [],
+									"description": "Optional CV override (PDF/DOCX)"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/candidatures",
+							"host": ["{{base_url}}"],
+							"path": ["candidatures"]
+						},
+						"description": "🔐 Candidat only. Apply to a job offer with CV and optional cover letter."
+					},
+					"response": []
+				},
+				{
+					"name": "List My Applications",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [{ "key": "token", "value": "{{auth_token}}", "type": "string" }]
+						},
+						"method": "GET",
+						"header": [
+							{ "key": "Accept", "value": "application/json" }
+						],
+						"url": {
+							"raw": "{{base_url}}/candidat/candidatures",
+							"host": ["{{base_url}}"],
+							"path": ["candidat", "candidatures"]
+						},
+						"description": "🔐 Candidat only. Returns all applications submitted by this candidat."
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://localhost:8000/api",
+			"type": "string",
+			"description": "Base URL of the JobyNow API"
+		},
+		{
+			"key": "auth_token",
+			"value": "",
+			"type": "string",
+			"description": "Bearer token — auto-filled by Login/Register requests"
+		},
+		{
+			"key": "job_id",
+			"value": "1",
+			"type": "string",
+			"description": "ID of a job offer for testing"
+		},
+		{
+			"key": "candidature_id",
+			"value": "1",
+			"type": "string",
+			"description": "ID of a candidature for testing"
+		},
+		{
+			"key": "notification_id",
+			"value": "1",
+			"type": "string",
+			"description": "ID of a notification for testing"
+		}
+	]
+}
