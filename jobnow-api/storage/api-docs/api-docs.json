@@ -1,0 +1,651 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "JobNow API",
+        "description": "API documentation for JobNow - Moroccan Job Portal Platform. This API provides endpoints for job seekers and companies to manage job offers, applications, and user profiles.",
+        "contact": {
+            "name": "JobNow Support",
+            "email": "support@jobnow.ma"
+        },
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "http://localhost:8000",
+            "description": "Local Development Server"
+        },
+        {
+            "url": "https://api.jobnow.ma",
+            "description": "Production Server"
+        }
+    ],
+    "paths": {
+        "/api/entreprise/analytics": {
+            "get": {
+                "tags": [
+                    "Analytics"
+                ],
+                "summary": "Get entreprise analytics dashboard",
+                "description": "Returns comprehensive analytics for the authenticated entreprise",
+                "operationId": "e660f1286a9567b5acf8ea79f53555b2",
+                "responses": {
+                    "200": {
+                        "description": "Analytics retrieved successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": true
+                                        },
+                                        "data": {
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/api/candidat/analytics": {
+            "get": {
+                "tags": [
+                    "Analytics"
+                ],
+                "summary": "Get candidat analytics dashboard",
+                "description": "Returns comprehensive analytics for the authenticated candidat",
+                "operationId": "363baf6490e45e610a78ce9e84509adb",
+                "responses": {
+                    "200": {
+                        "description": "Analytics retrieved successfully"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/api/user": {
+            "get": {
+                "tags": [
+                    "Authentication"
+                ],
+                "summary": "Get authenticated user profile",
+                "description": "Returns the authenticated user's profile data with role-specific information",
+                "operationId": "31234491f21a35d2de09d4fae7ee13c4",
+                "responses": {
+                    "200": {
+                        "description": "User profile retrieved successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "user": {
+                                            "type": "object"
+                                        },
+                                        "profile": {
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/api/login": {
+            "post": {
+                "tags": [
+                    "Authentication"
+                ],
+                "summary": "Login to account",
+                "description": "Authenticates user and returns access token",
+                "operationId": "a3b306d14572d1f4bd6c064b3233e7b8",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "email",
+                                    "password",
+                                    "cf-turnstile-response"
+                                ],
+                                "properties": {
+                                    "email": {
+                                        "type": "string",
+                                        "format": "email",
+                                        "example": "user@example.com"
+                                    },
+                                    "password": {
+                                        "type": "string",
+                                        "format": "password",
+                                        "example": "password123"
+                                    },
+                                    "cf-turnstile-response": {
+                                        "type": "string",
+                                        "example": "turnstile_token"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Login successful",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "user": {
+                                            "type": "object"
+                                        },
+                                        "profile": {
+                                            "type": "object"
+                                        },
+                                        "access_token": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Invalid credentials"
+                    }
+                }
+            }
+        },
+        "/api/candidat/job-alerts": {
+            "get": {
+                "tags": [
+                    "Job Alerts"
+                ],
+                "summary": "Get all job alerts for authenticated candidat",
+                "description": "Returns list of job alerts configured by the candidat",
+                "operationId": "7850e085d69bf207c77f857d90b74558",
+                "responses": {
+                    "200": {
+                        "description": "Job alerts retrieved successfully"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Job Alerts"
+                ],
+                "summary": "Create a new job alert",
+                "description": "Create a job alert with specific criteria",
+                "operationId": "5804075fef55e793328c5626d9b7dd87",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "keywords": {
+                                        "type": "string",
+                                        "example": "developer"
+                                    },
+                                    "contract_types": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "locations": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "integer"
+                                        }
+                                    },
+                                    "frequency": {
+                                        "type": "string",
+                                        "example": "daily",
+                                        "enum": [
+                                            "instant",
+                                            "daily",
+                                            "weekly"
+                                        ]
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Job alert created successfully"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/api/candidat/job-alerts/{id}": {
+            "put": {
+                "tags": [
+                    "Job Alerts"
+                ],
+                "summary": "Update a job alert",
+                "description": "Update an existing job alert",
+                "operationId": "4f569df2b2a12969add1d6947806a687",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Job alert updated successfully"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Job Alerts"
+                ],
+                "summary": "Delete a job alert",
+                "description": "Delete an existing job alert",
+                "operationId": "d81ed94a84028beec518b70fc998650f",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Job alert deleted successfully"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/api/candidat/saved-jobs": {
+            "get": {
+                "tags": [
+                    "Saved Jobs"
+                ],
+                "summary": "Get all saved jobs for authenticated candidat",
+                "description": "Returns list of jobs saved by the candidat",
+                "operationId": "d51bef1292e55d59c2bd3d7b02368f16",
+                "responses": {
+                    "200": {
+                        "description": "Saved jobs retrieved successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": true
+                                        },
+                                        "data": {
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/api/candidat/saved-jobs/{offreId}": {
+            "post": {
+                "tags": [
+                    "Saved Jobs"
+                ],
+                "summary": "Save a job offer",
+                "description": "Add a job offer to candidat's saved jobs",
+                "operationId": "657d0e6bc59ece715e69fff76f07501e",
+                "parameters": [
+                    {
+                        "name": "offreId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Job saved successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": true
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Offre sauvegardée avec succès."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Job offer not found"
+                    },
+                    "409": {
+                        "description": "Job already saved"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Saved Jobs"
+                ],
+                "summary": "Remove a saved job",
+                "description": "Remove a job offer from candidat's saved jobs",
+                "operationId": "43b07698d531c34bf65bab08cb540518",
+                "parameters": [
+                    {
+                        "name": "offreId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Job removed from saved successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": true
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Offre retirée des favoris."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Saved job not found"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/api/candidat/saved-jobs/check/{offreId}": {
+            "get": {
+                "tags": [
+                    "Saved Jobs"
+                ],
+                "summary": "Check if job is saved",
+                "description": "Check if a specific job is saved by the candidat",
+                "operationId": "58586d48f839a22246b9de0c1f0a4803",
+                "parameters": [
+                    {
+                        "name": "offreId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Check result",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "is_saved": {
+                                            "type": "boolean",
+                                            "example": true
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/api/search/autocomplete/jobs": {
+            "get": {
+                "tags": [
+                    "Search"
+                ],
+                "summary": "Autocomplete job titles",
+                "description": "Returns job title suggestions based on search query",
+                "operationId": "6ace43840de49ca421ef412011dac823",
+                "parameters": [
+                    {
+                        "name": "q",
+                        "in": "query",
+                        "description": "Search query (minimum 2 characters)",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "minLength": 2
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Autocomplete suggestions",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "suggestions": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "string"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/search/autocomplete/locations": {
+            "get": {
+                "tags": [
+                    "Search"
+                ],
+                "summary": "Autocomplete locations",
+                "description": "Returns city suggestions based on search query",
+                "operationId": "b068ba9bb42c11b8da495c7ff6fb3e59",
+                "parameters": [
+                    {
+                        "name": "q",
+                        "in": "query",
+                        "description": "Search query (minimum 2 characters)",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "minLength": 2
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Location suggestions"
+                    }
+                }
+            }
+        },
+        "/api/search/autocomplete/companies": {
+            "get": {
+                "tags": [
+                    "Search"
+                ],
+                "summary": "Autocomplete company names",
+                "description": "Returns company name suggestions based on search query",
+                "operationId": "ec7941b024c83f24213ac36945c2110f",
+                "parameters": [
+                    {
+                        "name": "q",
+                        "in": "query",
+                        "description": "Search query (minimum 2 characters)",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "minLength": 2
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Company suggestions"
+                    }
+                }
+            }
+        },
+        "/api/search/popular": {
+            "get": {
+                "tags": [
+                    "Search"
+                ],
+                "summary": "Get popular search terms",
+                "description": "Returns popular job titles and locations",
+                "operationId": "0d5f56c0c5ba61320f82b0491415c074",
+                "responses": {
+                    "200": {
+                        "description": "Popular search terms"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "securitySchemes": {
+            "sanctum": {
+                "type": "http",
+                "scheme": "bearer",
+                "bearerFormat": "JWT",
+                "description": "Enter token in format (Bearer <token>)",
+                "name": "Authorization",
+                "in": "header"
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Authentication",
+            "description": "User authentication and registration endpoints"
+        },
+        {
+            "name": "Analytics",
+            "description": "Analytics"
+        },
+        {
+            "name": "Job Alerts",
+            "description": "Job Alerts"
+        },
+        {
+            "name": "Saved Jobs",
+            "description": "Saved Jobs"
+        },
+        {
+            "name": "Search",
+            "description": "Search"
+        }
+    ],
+    "security": [
+        {
+            "sanctum": []
+        }
+    ]
+}

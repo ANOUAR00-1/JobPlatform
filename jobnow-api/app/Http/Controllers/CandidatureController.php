@@ -9,8 +9,11 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\DB;
 use App\Mail\EntretienConvocationMail;
 use App\Notifications\NewCandidatureNotification;
+use App\Jobs\SendNotificationJob;
+use App\Jobs\SendEmailJob;
 
 class CandidatureController extends Controller
 {
@@ -19,7 +22,16 @@ class CandidatureController extends Controller
      */
     public function store(ApplyJobRequest $request): JsonResponse
     {
+        // Check if user has candidat profile
+        if (!$request->user()->candidat) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Profil candidat introuvable. Veuillez compléter votre profil.',
+            ], 422);
+        }
+
         $candidatId = $request->user()->candidat->id;
+        
         $offreId = $request->offre_id;
 
         // Check duplicate application
@@ -39,27 +51,55 @@ class CandidatureController extends Controller
             ], 422);
         }
 
-        // Upload CV
-        $cvPath = $request->file('cv')->store('cvs', 'public');
+        try {
+            DB::beginTransaction();
 
-        $candidature = Candidature::create([
-            'offre_id' => $offreId,
-            'candidat_id' => $candidatId,
-            'cv_path' => $cvPath,
-            'lettre_motivation' => $request->lettre_motivation,
-            'statut' => 'en_attente',
-        ]);
+            // Upload CV
+            $cvPath = $request->file('cv')->store('cvs', 'public');
 
-        // Trigger Notification to Enterprise User
-        if ($offre->entreprise && $offre->entreprise->user) {
-            $offre->entreprise->user->notify(new NewCandidatureNotification($candidature));
+            $candidature = Candidature::create([
+                'offre_id' => $offreId,
+                'candidat_id' => $candidatId,
+                'cv_path' => $cvPath,
+                'lettre_motivation' => $request->lettre_motivation,
+                'statut' => 'en_attente',
+            ]);
+
+            // Load relationships for notification
+            $candidature->load(['candidat', 'offre']);
+
+            // Trigger Notification to Enterprise User (in background)
+            if ($offre->entreprise && $offre->entreprise->user) {
+                SendNotificationJob::dispatch(
+                    $offre->entreprise->user,
+                    new NewCandidatureNotification($candidature)
+                );
+            }
+
+            DB::commit();
+
+            return response()->json([
+                'success' => true,
+                'message' => 'Candidature soumise avec succès.',
+                'data' => ['candidature' => $candidature],
+            ], 201);
+
+        } catch (\Exception $e) {
+            DB::rollBack();
+            
+            // Delete uploaded file if it exists
+            if (isset($cvPath)) {
+                Storage::disk('public')->delete($cvPath);
+            }
+
+            \Log::error('Candidature submission error: ' . $e->getMessage());
+
+            return response()->json([
+                'success' => false,
+                'message' => 'Erreur lors de la soumission de la candidature.',
+                'error' => config('app.debug') ? $e->getMessage() : null
+            ], 500);
         }
-
-        return response()->json([
-            'success' => true,
-            'message' => 'Candidature soumise avec succès.',
-            'data' => ['candidature' => $candidature],
-        ], 201);
     }
 
     /**
@@ -95,6 +135,10 @@ class CandidatureController extends Controller
 
         $candidature->update(['statut' => 'acceptee']);
 
+        // Clear analytics cache
+        AnalyticsController::clearAnalyticsCache($request->user()->id, 'entreprise');
+        AnalyticsController::clearAnalyticsCache($candidature->candidat->user_id, 'candidat');
+
         return response()->json([
             'success' => true,
             'message' => 'Candidature acceptée.',
@@ -117,6 +161,10 @@ class CandidatureController extends Controller
         }
 
         $candidature->update(['statut' => 'refusee']);
+
+        // Clear analytics cache
+        AnalyticsController::clearAnalyticsCache($request->user()->id, 'entreprise');
+        AnalyticsController::clearAnalyticsCache($candidature->candidat->user_id, 'candidat');
 
         return response()->json([
             'success' => true,
@@ -180,7 +228,9 @@ class CandidatureController extends Controller
             'statut' => 'convoquée' // or 'convoqué' (adopting feminine for candidature: 'convoquée')
         ]);
 
-        Mail::to($candidature->candidat->user->email)->send(
+        // Send email in background
+        SendEmailJob::dispatch(
+            $candidature->candidat->user->email,
             new EntretienConvocationMail(
                 $candidature->candidat->nom . ' ' . $candidature->candidat->prenom,
                 $candidature->offre->titre,

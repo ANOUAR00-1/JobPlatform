@@ -1,78 +1,31 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8">
-    <title>Verify your email - JobyNow</title>
-    <style>
-        body {
-            background-color: #050505;
-            color: #f1f5f9;
-            font-family: 'Arial', sans-serif;
-            margin: 0;
-            padding: 40px;
-        }
-        .container {
-            max-width: 600px;
-            margin: 0 auto;
-            background-color: #111111;
-            border: 2px solid #222222;
-            padding: 40px;
-            box-shadow: 4px 4px 0 0 #222222;
-        }
-        h1 {
-            color: #ffffff;
-            font-size: 24px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-top: 0;
-            margin-bottom: 20px;
-            border-bottom: 2px solid #222222;
-            padding-bottom: 20px;
-        }
-        p {
-            font-size: 16px;
-            line-height: 1.6;
-            color: #94a3b8;
-            margin-bottom: 20px;
-        }
-        .code-box {
-            background-color: #050505;
-            border: 2px solid #00E5FF;
-            padding: 20px;
-            text-align: center;
-            margin: 30px 0;
-        }
-        .code {
-            color: #00E5FF;
-            font-size: 36px;
-            font-weight: bold;
-            letter-spacing: 8px;
-            font-family: 'Courier New', Courier, monospace;
-        }
-        .footer {
-            margin-top: 40px;
-            font-size: 12px;
-            color: #64748b;
-            text-align: center;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <h1>SECURE VERIFICATION</h1>
-        <p>Welcome to JobyNow. To complete your registration as a candidate, please use the 6-digit confirmation code below:</p>
-        
-        <div class="code-box">
-            <span class="code">{{ $code }}</span>
-        </div>
-        
-        <p>Return to the JobyNow platform and enter this code to activate your workspace. This code is valid for immediate application.</p>
-        
-        <div class="footer">
-            &copy; {{ date('Y') }} JobyNow. System Generated.
-        </div>
+@extends('emails.layout')
+
+@section('title', 'Vérification de votre email - JobNow')
+
+@section('header-subtitle', 'Vérification de votre compte')
+
+@section('content')
+    <div class="greeting">Bienvenue sur JobNow !</div>
+    
+    <div class="message">
+        <p>Merci de vous être inscrit sur JobNow. Pour compléter votre inscription en tant que candidat, veuillez utiliser le code de vérification à 6 chiffres ci-dessous :</p>
     </div>
-</body>
-</html>
+
+    <div class="info-box" style="text-align: center; background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%); border-left: 4px solid #3b82f6;">
+        <div style="font-size: 48px; font-weight: 700; color: #1e40af; letter-spacing: 8px; font-family: 'Courier New', monospace; padding: 20px 0;">
+            {{ $code }}
+        </div>
+        <p style="margin: 0; color: #3b82f6; font-size: 13px; font-weight: 600;">Code de vérification</p>
+    </div>
+
+    <div class="message">
+        <p>Retournez sur la plateforme JobNow et entrez ce code pour activer votre compte. Ce code est valide pour une utilisation immédiate.</p>
+        <p style="color: #ef4444; font-weight: 600;">⚠️ Ne partagez jamais ce code avec qui que ce soit.</p>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="message" style="font-size: 13px; color: #9ca3af;">
+        <p>Si vous n'avez pas créé de compte sur JobNow, vous pouvez ignorer cet email en toute sécurité.</p>
+    </div>
+@endsection

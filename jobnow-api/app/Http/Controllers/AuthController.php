@@ -13,12 +13,33 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Str;
 use App\Http\Requests\RegisterEntrepriseRequest;
+use OpenApi\Attributes as OA;
 
 class AuthController extends Controller
 {
-    /**
-     * Get authenticated user data
-     */
+    #[OA\Get(
+        path: "/api/user",
+        summary: "Get authenticated user profile",
+        description: "Returns the authenticated user's profile data with role-specific information",
+        security: [["sanctum" => []]],
+        tags: ["Authentication"],
+        responses: [
+            new OA\Response(
+                response: 200,
+                description: "User profile retrieved successfully",
+                content: new OA\JsonContent(
+                    properties: [
+                        new OA\Property(property: "user", type: "object"),
+                        new OA\Property(property: "profile", type: "object")
+                    ]
+                )
+            ),
+            new OA\Response(
+                response: 401,
+                description: "Unauthenticated"
+            )
+        ]
+    )]
     public function getUser(Request $request): JsonResponse
     {
         $user = $request->user();
@@ -27,13 +48,19 @@ class AuthController extends Controller
             return response()->json(['message' => 'Unauthenticated.'], 401);
         }
 
-        // Load the appropriate profile based on role
-        $profile = ($user->role === 'candidat') ? $user->candidat : $user->entreprise;
+        $cacheKey = \App\Services\CacheService::userProfileKey($user->id);
+        
+        $userData = \Illuminate\Support\Facades\Cache::remember($cacheKey, \App\Services\CacheService::CACHE_USER_PROFILE, function () use ($user) {
+            // Load the appropriate profile based on role
+            $profile = ($user->role === 'candidat') ? $user->candidat : $user->entreprise;
 
-        return response()->json([
-            'user' => $user->only(['id', 'email', 'role']),
-            'profile' => $profile,
-        ]);
+            return [
+                'user' => $user->only(['id', 'email', 'role']),
+                'profile' => $profile,
+            ];
+        });
+
+        return response()->json($userData);
     }
 
     /**
@@ -83,6 +110,43 @@ class AuthController extends Controller
 
     /**
      * Register candidat (from feature/dev)
+     * 
+     * @OA\Post(
+     *     path="/api/register",
+     *     summary="Register a new candidate account",
+     *     description="Creates a new candidate account and sends email verification code",
+     *     operationId="registerCandidat",
+     *     tags={"Authentication"},
+     *     @OA\RequestBody(
+     *         required=true,
+     *         @OA\JsonContent(
+     *             required={"email","password","nom","prenom","telephone","ville_id","cf-turnstile-response"},
+     *             @OA\Property(property="email", type="string", format="email", example="candidat@example.com"),
+     *             @OA\Property(property="password", type="string", format="password", example="password123"),
+     *             @OA\Property(property="nom", type="string", example="Alami"),
+     *             @OA\Property(property="prenom", type="string", example="Ahmed"),
+     *             @OA\Property(property="telephone", type="string", example="+212612345678"),
+     *             @OA\Property(property="ville_id", type="integer", example=1),
+     *             @OA\Property(property="cf-turnstile-response", type="string", example="turnstile_token")
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Registration successful, verification code sent",
+     *         @OA\JsonContent(
+     *             @OA\Property(property="requires_verification", type="boolean", example=true),
+     *             @OA\Property(property="email", type="string", example="candidat@example.com"),
+     *             @OA\Property(property="message", type="string", example="Un code de vérification a été envoyé à votre adresse email.")
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=422,
+     *         description="Validation error",
+     *         @OA\JsonContent(
+     *             @OA\Property(property="message", type="string", example="The email has already been taken.")
+     *         )
+     *     )
+     * )
      */
     public function register(Request $request)
     {
@@ -117,7 +181,8 @@ class AuthController extends Controller
             'ville_id' => $request->ville_id,
         ]);
 
-        \Illuminate\Support\Facades\Mail::to($user->email)->send(new \App\Mail\VerifyCandidatMail($code));
+        // Send verification email in background
+        \App\Jobs\SendEmailJob::dispatch($user->email, new \App\Mail\VerifyCandidatMail($code));
 
         return response()->json([
             'requires_verification' => true,
@@ -156,9 +221,40 @@ class AuthController extends Controller
     }
 
 
-    /**
-     * Login (from feature/dev)
-     */
+    #[OA\Post(
+        path: "/api/login",
+        summary: "Login to account",
+        description: "Authenticates user and returns access token",
+        tags: ["Authentication"],
+        requestBody: new OA\RequestBody(
+            required: true,
+            content: new OA\JsonContent(
+                required: ["email", "password", "cf-turnstile-response"],
+                properties: [
+                    new OA\Property(property: "email", type: "string", format: "email", example: "user@example.com"),
+                    new OA\Property(property: "password", type: "string", format: "password", example: "password123"),
+                    new OA\Property(property: "cf-turnstile-response", type: "string", example: "turnstile_token")
+                ]
+            )
+        ),
+        responses: [
+            new OA\Response(
+                response: 200,
+                description: "Login successful",
+                content: new OA\JsonContent(
+                    properties: [
+                        new OA\Property(property: "user", type: "object"),
+                        new OA\Property(property: "profile", type: "object"),
+                        new OA\Property(property: "access_token", type: "string")
+                    ]
+                )
+            ),
+            new OA\Response(
+                response: 401,
+                description: "Invalid credentials"
+            )
+        ]
+    )]
     public function login(Request $request)
     {
         $request->validate([

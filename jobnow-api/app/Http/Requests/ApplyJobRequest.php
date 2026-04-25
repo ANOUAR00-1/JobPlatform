@@ -2,6 +2,8 @@
 
 namespace App\Http\Requests;
 
+use App\Rules\SafeFilename;
+use App\Rules\ValidPDFContent;
 use Illuminate\Foundation\Http\FormRequest;
 
 class ApplyJobRequest extends FormRequest
@@ -15,7 +17,14 @@ class ApplyJobRequest extends FormRequest
     {
         return [
             'offre_id' => 'required|integer|exists:offres,id',
-            'cv' => 'required|file|mimes:pdf,doc,docx|max:5120',
+            'cv' => [
+                'required',
+                'file',
+                'mimes:pdf,doc,docx',
+                'max:5120',
+                new ValidPDFContent(),
+                new SafeFilename(),
+            ],
             'lettre_motivation' => 'nullable|string|max:5000',
         ];
     }

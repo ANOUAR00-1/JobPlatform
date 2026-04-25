@@ -25,7 +25,7 @@ class Candidature extends Model
 
     public function candidat(): BelongsTo
     {
-        return $this->belongsTo(Candidat::class, 'candidat_id', 'user_id');
+        return $this->belongsTo(Candidat::class, 'candidat_id', 'id');
     }
 
    public function entretien()

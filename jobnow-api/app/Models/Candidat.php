@@ -37,9 +37,13 @@ class Candidat extends Model
         return $this->hasMany(Candidature::class);
     }
 
+    public function savedJobs()
+    {
+        return $this->hasMany(SavedJob::class);
+    }
 
-
-
-
-
+    public function hasSavedJob($offreId): bool
+    {
+        return $this->savedJobs()->where('offre_id', $offreId)->exists();
+    }
 }

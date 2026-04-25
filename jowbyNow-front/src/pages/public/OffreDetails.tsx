@@ -68,11 +68,7 @@ const OffreDetails: React.FC = () => {
       formData.append('lettre_motivation', lettreMotivation);
       formData.append('cv', cvFile);
 
-      await api.post('/candidatures', formData, {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-        }
-      });
+      await api.post('/candidatures', formData);
 
       addToast(t('public_jobs.apply_modal.success', 'Candidature envoyée avec succès!'), 'success');
       setShowApplyModal(false);

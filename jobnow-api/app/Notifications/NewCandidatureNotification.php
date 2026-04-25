@@ -38,9 +38,17 @@ class NewCandidatureNotification extends Notification
      */
     public function toArray(object $notifiable): array
     {
+        $candidatName = 'Candidat';
+        
+        if ($this->candidature->candidat) {
+            $nom = $this->candidature->candidat->nom ?? 'N/A';
+            $prenom = $this->candidature->candidat->prenom ?? 'N/A';
+            $candidatName = trim($nom . ' ' . $prenom);
+        }
+
         return [
-            'candidat_name' => $this->candidature->candidat->nom . ' ' . $this->candidature->candidat->prenom,
-            'offre_title' => $this->candidature->offre->titre,
+            'candidat_name' => $candidatName,
+            'offre_title' => $this->candidature->offre->titre ?? 'Offre',
             'candidature_id' => $this->candidature->id,
             'message' => 'Nouvelle candidature reçue',
         ];
