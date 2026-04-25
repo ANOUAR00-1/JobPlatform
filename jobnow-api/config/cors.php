@@ -19,9 +19,15 @@ return [
 
     'allowed_methods' => ['*'],
 
-    'allowed_origins' => ['http://localhost:5173', 'http://localhost:3000'],
+    'allowed_origins' => [
+        'http://localhost:5173',
+        'http://localhost:3000',
+        env('FRONTEND_URL', 'http://localhost:5173'),
+    ],
 
-    'allowed_origins_patterns' => [],
+    'allowed_origins_patterns' => [
+        '/^https:\/\/.*\.vercel\.app$/',  // Allow all Vercel preview deployments
+    ],
 
     'allowed_headers' => ['*'],
 
