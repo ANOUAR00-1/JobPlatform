@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { FileText, Scale, AlertCircle, UserX, Shield, Gavel } from 'lucide-react';
 
 const TermsOfService: React.FC = () => {
-  const { t } = useTranslation();
+  // const { t } = useTranslation();
 
   return (
     <div className="w-full min-h-screen bg-slate-50 font-sans">
