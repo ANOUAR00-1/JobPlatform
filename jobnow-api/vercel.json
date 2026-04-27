@@ -5,7 +5,8 @@
   "installCommand": "composer install --optimize-autoloader --no-dev",
   "functions": {
     "api/index.php": {
-      "runtime": "vercel-php@0.7.1"
+      "runtime": "vercel-php@0.7.1",
+      "maxDuration": 10
     }
   },
   "routes": [
@@ -22,9 +23,10 @@
     "APP_PACKAGES_CACHE": "/tmp/packages.php",
     "APP_ROUTES_CACHE": "/tmp/routes.php",
     "APP_SERVICES_CACHE": "/tmp/services.php",
-    "VIEW_COMPILED_PATH": "/tmp",
+    "VIEW_COMPILED_PATH": "/tmp/views",
     "CACHE_DRIVER": "array",
     "LOG_CHANNEL": "stderr",
-    "SESSION_DRIVER": "cookie"
+    "SESSION_DRIVER": "cookie",
+    "FILESYSTEM_DISK": "local"
   }
 }
