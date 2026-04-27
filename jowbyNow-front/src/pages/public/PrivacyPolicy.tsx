@@ -1,9 +1,7 @@
 import React from 'react';
-import { useTranslation } from 'react-i18next';
 import { Shield, Lock, Eye, Database, UserCheck, Mail } from 'lucide-react';
 
 const PrivacyPolicy: React.FC = () => {
-  const { t } = useTranslation();
 
   return (
     <div className="w-full min-h-screen bg-slate-50 font-sans">

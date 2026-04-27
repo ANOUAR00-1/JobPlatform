@@ -214,7 +214,7 @@ const ManageCandidatures: React.FC = () => {
                       <div className="flex flex-col">
                         <span className="font-bold text-slate-950 flex items-center gap-2">
                           {cand.candidat?.nom} {cand.candidat?.prenom}
-                          {cand.note_evaluation > 0 && (
+                          {cand.note_evaluation && cand.note_evaluation > 0 && (
                             <span className="flex items-center gap-1 text-yellow-700 bg-yellow-100 px-2 py-0.5 rounded-full text-xs font-bold border border-yellow-200">
                               <Star className="w-3 h-3 fill-yellow-600" />
                               {cand.note_evaluation}

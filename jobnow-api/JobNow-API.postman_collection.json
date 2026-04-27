@@ -1,22 +1,13 @@
 {
 	"info": {
 		"_postman_id": "a1b2c3d4-e5f6-47a8-98b9-jobynow2026",
-<<<<<<< HEAD
-		"name": "JobyNow API — Complete Collection",
-		"description": "Full coverage of all JobyNow REST API endpoints.\n\n**Setup:**\n1. Set `base_url` variable to `http://localhost:8000/api`\n2. Run **Login** and copy the `access_token` from the response into the `auth_token` variable.\n\n**Notes:**\n- `cf-turnstile-response` on Register/Login must be a valid Cloudflare Turnstile token (for testing, bypass or set a test-mode site key).\n- File upload endpoints use `form-data` body.",
-=======
 		"name": "JobyNow API — Complete Collection v2",
 		"description": "**Complete coverage of all JobyNow REST API endpoints**\n\n**Quick Setup:**\n1. Set `base_url` variable to `http://localhost:8000/api`\n2. Run **Login** request - token auto-saves to `auth_token`\n3. Test away!\n\n**Notes:**\n- All protected endpoints use Bearer token authentication\n- File uploads use `form-data` body type\n- For testing: use `XXXX-TEST-TOKEN` for Turnstile (or configure test mode)",
->>>>>>> origin/main
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
-<<<<<<< HEAD
-			"name": " Auth",
-=======
 			"name": "🔐 Authentication",
->>>>>>> origin/main
 			"item": [
 				{
 					"name": "Register Candidat",
@@ -36,18 +27,12 @@
 							"host": ["{{base_url}}"],
 							"path": ["register"]
 						},
-<<<<<<< HEAD
-						"description": "Register a new candidat account. Sends a 6-digit verification code by email. Requires a valid Cloudflare Turnstile token."
-=======
 						"description": "Register a new candidat account. Sends a 6-digit verification code by email."
->>>>>>> origin/main
 					},
 					"response": []
 				},
 				{
 					"name": "Verify Email (OTP)",
-<<<<<<< HEAD
-=======
 					"event": [
 						{
 							"listen": "test",
@@ -63,7 +48,6 @@
 							}
 						}
 					],
->>>>>>> origin/main
 					"request": {
 						"method": "POST",
 						"header": [
@@ -80,18 +64,12 @@
 							"host": ["{{base_url}}"],
 							"path": ["verify-email"]
 						},
-<<<<<<< HEAD
-						"description": "Verify a candidat's email using the 6-digit OTP sent during registration. Returns an access_token on success."
-=======
 						"description": "Verify candidat email with 6-digit OTP. Returns access_token on success."
->>>>>>> origin/main
 					},
 					"response": []
 				},
 				{
 					"name": "Register Entreprise",
-<<<<<<< HEAD
-=======
 					"event": [
 						{
 							"listen": "test",
@@ -107,7 +85,6 @@
 							}
 						}
 					],
->>>>>>> origin/main
 					"request": {
 						"method": "POST",
 						"header": [
@@ -124,11 +101,7 @@
 							"host": ["{{base_url}}"],
 							"path": ["auth", "register", "entreprise"]
 						},
-<<<<<<< HEAD
-						"description": "Register a new entreprise account. Returns an access_token immediately (no email verification required for enterprises)."
-=======
 						"description": "Register entreprise account. Returns token immediately (no email verification)."
->>>>>>> origin/main
 					},
 					"response": []
 				},
@@ -165,9 +138,6 @@
 							"host": ["{{base_url}}"],
 							"path": ["login"]
 						},
-<<<<<<< HEAD
-						"description": "Login as any user (candidat or entreprise). Returns user info, profile, and access_token. The test script auto-saves the token to the `auth_token` collection variable."
-=======
 						"description": "Login for any user type. Auto-saves token to collection variable."
 					},
 					"response": []
@@ -233,16 +203,12 @@
 							"path": ["reset-password"]
 						},
 						"description": "Reset password using token from email."
->>>>>>> origin/main
 					},
 					"response": []
 				}
 			]
 		},
 		{
-<<<<<<< HEAD
-			"name": " Public — Job Offers",
-=======
 			"name": "🌐 OAuth",
 			"item": [
 				{
@@ -288,7 +254,6 @@
 		},
 		{
 			"name": "📋 Public - Job Offers",
->>>>>>> origin/main
 			"item": [
 				{
 					"name": "List All Active Jobs",
@@ -302,11 +267,7 @@
 							"host": ["{{base_url}}"],
 							"path": ["jobs"]
 						},
-<<<<<<< HEAD
-						"description": "Public endpoint. Returns all active job offers (statut=ouverte) with company and city info. No auth required."
-=======
 						"description": "Public endpoint. Returns all active job offers with company and city info."
->>>>>>> origin/main
 					},
 					"response": []
 				},
@@ -322,22 +283,14 @@
 							"host": ["{{base_url}}"],
 							"path": ["jobs", "{{job_id}}"]
 						},
-<<<<<<< HEAD
-						"description": "Public endpoint. Returns full details of a single job offer by its ID. No auth required."
-=======
 						"description": "Public endpoint. Returns full details of a single job offer."
->>>>>>> origin/main
 					},
 					"response": []
 				}
 			]
 		},
 		{
-<<<<<<< HEAD
-			"name": " AI Chatbot (JobyBot)",
-=======
 			"name": "🤖 AI Chatbot (JobyBot)",
->>>>>>> origin/main
 			"item": [
 				{
 					"name": "Ask JobyBot",
@@ -357,22 +310,14 @@
 							"host": ["{{base_url}}"],
 							"path": ["chat"]
 						},
-<<<<<<< HEAD
-						"description": "Public AI chatbot endpoint powered by Groq (Llama 3.1). Supports English, French, and Moroccan Darija. Includes RAG context of the latest 10 active job offers. No auth required.\n\n**Required field:**\n- `message` (string) — the user's question"
-=======
 						"description": "Public AI chatbot powered by Groq (Llama 3.1). Supports EN/FR/Darija with RAG context."
->>>>>>> origin/main
 					},
 					"response": []
 				}
 			]
 		},
 		{
-<<<<<<< HEAD
-			"name": " Espace Entreprise",
-=======
 			"name": "🏢 Espace Entreprise",
->>>>>>> origin/main
 			"item": [
 				{
 					"name": "Create Job Offer",
@@ -396,20 +341,12 @@
 							"host": ["{{base_url}}"],
 							"path": ["offres"]
 						},
-<<<<<<< HEAD
-						"description": " Entreprise only. Create a new job offer.\n\n**Required fields:** titre, description\n**Optional:** type_contrat (CDI/CDD/Stage/Freelance), ville_id, salaire, date_expiration, competences_requises[]"
-=======
 						"description": "🔐 Entreprise only. Create a new job offer."
->>>>>>> origin/main
 					},
 					"response": []
 				},
 				{
-<<<<<<< HEAD
-					"name": "List My Offers (Entreprise)",
-=======
 					"name": "List My Offers",
->>>>>>> origin/main
 					"request": {
 						"auth": {
 							"type": "bearer",
@@ -424,11 +361,7 @@
 							"host": ["{{base_url}}"],
 							"path": ["entreprise", "offres"]
 						},
-<<<<<<< HEAD
-						"description": "🔐 Entreprise only. Returns all job offers posted by the authenticated enterprise."
-=======
 						"description": "🔐 Entreprise only. Returns all job offers posted by this enterprise."
->>>>>>> origin/main
 					},
 					"response": []
 				},
@@ -448,11 +381,7 @@
 							"host": ["{{base_url}}"],
 							"path": ["entreprise", "candidatures"]
 						},
-<<<<<<< HEAD
-						"description": " Entreprise only. Returns all job applications received for this enterprise's offers, with candidat details and CV path."
-=======
 						"description": "🔐 Entreprise only. Returns all applications received for this enterprise's offers."
->>>>>>> origin/main
 					},
 					"response": []
 				},
@@ -472,11 +401,7 @@
 							"host": ["{{base_url}}"],
 							"path": ["candidatures", "{{candidature_id}}", "accepter"]
 						},
-<<<<<<< HEAD
-						"description": "🔐 Entreprise only. Accept a specific candidature by ID. Updates the status to 'acceptee'.\n\nSet the `candidature_id` variable or replace it directly in the URL."
-=======
 						"description": "🔐 Entreprise only. Accept a candidature. Updates status to 'acceptee'."
->>>>>>> origin/main
 					},
 					"response": []
 				},
@@ -496,9 +421,6 @@
 							"host": ["{{base_url}}"],
 							"path": ["candidatures", "{{candidature_id}}", "refuser"]
 						},
-<<<<<<< HEAD
-						"description": "🔐 Entreprise only. Refuse a specific candidature by ID. Updates the status to 'refusee'.\n\nSet the `candidature_id` variable or replace it directly in the URL."
-=======
 						"description": "🔐 Entreprise only. Refuse a candidature. Updates status to 'refusee'."
 					},
 					"response": []
@@ -592,18 +514,13 @@
 							"path": ["entreprise", "notifications", "{{notification_id}}", "read"]
 						},
 						"description": "🔐 Entreprise only. Mark a specific notification as read."
->>>>>>> origin/main
 					},
 					"response": []
 				}
 			]
 		},
 		{
-<<<<<<< HEAD
-			"name": " Espace Candidat",
-=======
 			"name": "👤 Espace Candidat",
->>>>>>> origin/main
 			"item": [
 				{
 					"name": "Update Profile & Upload CV",
@@ -640,11 +557,7 @@
 							"host": ["{{base_url}}"],
 							"path": ["candidat", "profile"]
 						},
-<<<<<<< HEAD
-						"description": " Candidat only. Update a candidat's profile information and optionally upload a new CV (PDF/DOCX, max 2MB). Uses multipart/form-data."
-=======
 						"description": "🔐 Candidat only. Update profile and upload CV (PDF/DOCX, max 2MB)."
->>>>>>> origin/main
 					},
 					"response": []
 				},
@@ -687,11 +600,7 @@
 							"host": ["{{base_url}}"],
 							"path": ["candidatures"]
 						},
-<<<<<<< HEAD
-						"description": " Candidat only. Apply to a job offer. Attaches a CV file and optional cover letter. Uses multipart/form-data."
-=======
 						"description": "🔐 Candidat only. Apply to a job offer with CV and optional cover letter."
->>>>>>> origin/main
 					},
 					"response": []
 				},
@@ -711,11 +620,7 @@
 							"host": ["{{base_url}}"],
 							"path": ["candidat", "candidatures"]
 						},
-<<<<<<< HEAD
-						"description": " Candidat only. Returns all job applications submitted by the authenticated candidat, including the offer details and current application status."
-=======
 						"description": "🔐 Candidat only. Returns all applications submitted by this candidat."
->>>>>>> origin/main
 					},
 					"response": []
 				}
@@ -733,29 +638,18 @@
 			"key": "auth_token",
 			"value": "",
 			"type": "string",
-<<<<<<< HEAD
-			"description": "Bearer token — auto-filled by the Login request test script"
-=======
 			"description": "Bearer token — auto-filled by Login/Register requests"
->>>>>>> origin/main
 		},
 		{
 			"key": "job_id",
 			"value": "1",
 			"type": "string",
-<<<<<<< HEAD
-			"description": "ID of a job offer to use in test requests"
-=======
 			"description": "ID of a job offer for testing"
->>>>>>> origin/main
 		},
 		{
 			"key": "candidature_id",
 			"value": "1",
 			"type": "string",
-<<<<<<< HEAD
-			"description": "ID of a candidature to use in accept/refuse requests"
-=======
 			"description": "ID of a candidature for testing"
 		},
 		{
@@ -763,7 +657,6 @@
 			"value": "1",
 			"type": "string",
 			"description": "ID of a notification for testing"
->>>>>>> origin/main
 		}
 	]
 }
