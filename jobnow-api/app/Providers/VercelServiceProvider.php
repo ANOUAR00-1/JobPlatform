@@ -3,7 +3,6 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use Illuminate\Support\Facades\Storage;
 
 class VercelServiceProvider extends ServiceProvider
 {
@@ -17,8 +16,8 @@ class VercelServiceProvider extends ServiceProvider
             // Set writable paths to /tmp
             $this->app->useStoragePath('/tmp/storage');
             
-            // Ensure storage directories exist in /tmp
-            $this->ensureStorageDirectoriesExist();
+            // Disable Telescope in production on Vercel
+            $this->app->register(\Laravel\Telescope\TelescopeServiceProvider::class, [], false);
         }
     }
 
@@ -27,7 +26,10 @@ class VercelServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        // Ensure storage directories exist in /tmp
+        if ($this->app->environment('production')) {
+            $this->ensureStorageDirectoriesExist();
+        }
     }
 
     /**
