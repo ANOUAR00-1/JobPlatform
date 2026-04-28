@@ -11,14 +11,13 @@ class VercelServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        // Configure storage paths for Vercel's read-only filesystem
-        if ($this->app->environment('production')) {
-            // Set writable paths to /tmp
-            $this->app->useStoragePath('/tmp/storage');
-            
-            // Disable Telescope in production on Vercel
-            $this->app->register(\Laravel\Telescope\TelescopeServiceProvider::class, [], false);
+        // Only run in production (Vercel)
+        if (!$this->app->environment('production')) {
+            return;
         }
+
+        // Set storage path to /tmp
+        $this->app->useStoragePath('/tmp/storage');
     }
 
     /**
@@ -26,31 +25,33 @@ class VercelServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        // Ensure storage directories exist in /tmp
-        if ($this->app->environment('production')) {
-            $this->ensureStorageDirectoriesExist();
+        // Only run in production (Vercel)
+        if (!$this->app->environment('production')) {
+            return;
         }
+
+        // Create storage directories
+        $this->createStorageDirectories();
     }
 
     /**
-     * Ensure required storage directories exist in /tmp
+     * Create required storage directories in /tmp
      */
-    protected function ensureStorageDirectoriesExist(): void
+    protected function createStorageDirectories(): void
     {
         $directories = [
-            '/tmp/storage',
-            '/tmp/storage/framework',
-            '/tmp/storage/framework/cache',
-            '/tmp/storage/framework/cache/data',
-            '/tmp/storage/framework/sessions',
-            '/tmp/storage/framework/views',
-            '/tmp/storage/logs',
-            '/tmp/storage/app',
-            '/tmp/storage/app/public',
+            storage_path(),
+            storage_path('framework'),
+            storage_path('framework/cache'),
+            storage_path('framework/cache/data'),
+            storage_path('framework/sessions'),
+            storage_path('framework/views'),
+            storage_path('logs'),
+            storage_path('app'),
         ];
 
         foreach ($directories as $directory) {
-            if (!file_exists($directory)) {
+            if (!is_dir($directory)) {
                 @mkdir($directory, 0755, true);
             }
         }
