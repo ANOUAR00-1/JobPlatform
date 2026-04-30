@@ -43,15 +43,35 @@ try {
     }
 
     // Load Composer autoloader
-    if (!file_exists(__DIR__.'/../vendor/autoload.php')) {
+    $autoloadPath = __DIR__.'/../vendor/autoload.php';
+    if (!file_exists($autoloadPath)) {
         http_response_code(500);
-        die('Composer dependencies not installed');
+        header('Content-Type: application/json');
+        echo json_encode([
+            'error' => 'Composer dependencies not installed',
+            'message' => 'vendor/autoload.php not found',
+            'path' => $autoloadPath,
+            'cwd' => getcwd(),
+            'files' => scandir(__DIR__.'/../')
+        ]);
+        exit(1);
     }
     
-    require __DIR__.'/../vendor/autoload.php';
+    require $autoloadPath;
 
     // Bootstrap Laravel
-    $app = require_once __DIR__.'/../bootstrap/app.php';
+    $bootstrapPath = __DIR__.'/../bootstrap/app.php';
+    if (!file_exists($bootstrapPath)) {
+        http_response_code(500);
+        header('Content-Type: application/json');
+        echo json_encode([
+            'error' => 'Laravel bootstrap not found',
+            'path' => $bootstrapPath
+        ]);
+        exit(1);
+    }
+    
+    $app = require_once $bootstrapPath;
     
     // Handle the request (Laravel 12 style)
     $app->handleRequest(
