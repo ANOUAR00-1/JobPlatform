@@ -228,7 +228,7 @@ const Register: React.FC = () => {
 
       {/* Google OAuth Button */}
       <button
-        onClick={() => window.location.href = 'http://localhost:8000/api/auth/google'}
+        onClick={() => window.location.href = `${import.meta.env.VITE_API_URL || 'http://localhost:8000/api'}/auth/google`}
         className="w-full px-4 py-2.5 bg-white border border-slate-300 hover:bg-slate-50 text-slate-950 font-semibold rounded-lg transition-all flex items-center justify-center gap-2"
       >
         <svg className="w-5 h-5" viewBox="0 0 24 24">

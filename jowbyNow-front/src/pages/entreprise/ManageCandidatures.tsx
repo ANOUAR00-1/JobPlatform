@@ -235,7 +235,10 @@ const ManageCandidatures: React.FC = () => {
                       <div className="flex items-center justify-end gap-2">
                         {cand.cv_path && (
                           <button 
-                            onClick={() => window.open(`http://localhost:8000/storage/${cand.cv_path}`, '_blank')}
+                            onClick={() => {
+                              const baseUrl = import.meta.env.VITE_API_URL?.replace('/api', '') || 'http://localhost:8000';
+                              window.open(`${baseUrl}/storage/${cand.cv_path}`, '_blank');
+                            }}
                             title={t('enterprise_dashboard.tooltips.view_cv', 'Voir CV')} 
                             className="p-2 text-slate-600 hover:text-slate-950 hover:bg-slate-100 rounded-lg transition-all"
                           >

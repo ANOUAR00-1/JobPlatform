@@ -35,7 +35,8 @@ const JobyBotWidget: React.FC = () => {
     setIsLoading(true);
 
     try {
-      const response = await axios.post('http://localhost:8000/api/chat', { message: userMessage });
+      const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:8000/api';
+      const response = await axios.post(`${apiUrl}/chat`, { message: userMessage });
       if (response.data.success) {
         setMessages(prev => [...prev, { role: 'bot', text: response.data.reply }]);
       } else {
