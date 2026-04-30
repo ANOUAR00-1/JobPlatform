@@ -1,7 +1,7 @@
 {
   "version": 2,
   "framework": null,
-  "buildCommand": "cd jobnow-api && curl -sS https://getcomposer.org/installer | php && php composer.phar install --optimize-autoloader --no-dev --prefer-dist",
+  "buildCommand": "curl -sS https://getcomposer.org/installer | php && php composer.phar install --optimize-autoloader --no-dev --prefer-dist",
   "functions": {
     "api/index.php": {
       "runtime": "vercel-php@0.7.1",
