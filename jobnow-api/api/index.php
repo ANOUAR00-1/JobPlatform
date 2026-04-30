@@ -1,24 +1,50 @@
 <?php
 
-/**
- * Laravel - A PHP Framework For Web Artisans
- *
- * @package  Laravel
- * @author   Taylor Otwell <taylor@laravel.com>
- */
+// Minimal Laravel bootstrap for Vercel
+define('LARAVEL_START', microtime(true));
 
-// Register the Composer autoloader
-require __DIR__.'/../vendor/autoload.php';
+// Disable error display in production
+ini_set('display_errors', '0');
+error_reporting(0);
 
-// Bootstrap Laravel and handle the request
-$app = require_once __DIR__.'/../bootstrap/app.php';
+try {
+    // Create /tmp storage directories
+    $dirs = ['/tmp/storage', '/tmp/storage/framework', '/tmp/storage/framework/cache', 
+             '/tmp/storage/framework/cache/data', '/tmp/storage/framework/sessions', 
+             '/tmp/storage/framework/views', '/tmp/storage/logs', '/tmp/storage/app'];
+    
+    foreach ($dirs as $dir) {
+        @mkdir($dir, 0755, true);
+    }
 
-$kernel = $app->make(Illuminate\Contracts\Http\Kernel::class);
+    // Load Composer autoloader
+    if (!file_exists(__DIR__.'/../vendor/autoload.php')) {
+        http_response_code(500);
+        die('Composer dependencies not installed');
+    }
+    
+    require __DIR__.'/../vendor/autoload.php';
 
-$response = $kernel->handle(
-    $request = Illuminate\Http\Request::capture()
-);
-
-$response->send();
-
-$kernel->terminate($request, $response);
+    // Bootstrap Laravel
+    $app = require_once __DIR__.'/../bootstrap/app.php';
+    
+    // Handle the request
+    $app->handleRequest(
+        Illuminate\Http\Request::capture()
+    );
+    
+} catch (\Throwable $e) {
+    // Log error to stderr (Vercel logs)
+    error_log('Laravel Error: ' . $e->getMessage());
+    error_log('File: ' . $e->getFile() . ':' . $e->getLine());
+    
+    // Return JSON error for debugging
+    http_response_code(500);
+    header('Content-Type: application/json');
+    echo json_encode([
+        'error' => 'Application Error',
+        'message' => $e->getMessage(),
+        'file' => $e->getFile(),
+        'line' => $e->getLine(),
+    ]);
+}
