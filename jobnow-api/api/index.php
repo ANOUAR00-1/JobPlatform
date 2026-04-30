@@ -53,9 +53,9 @@ try {
     // Bootstrap Laravel
     $app = require_once __DIR__.'/../bootstrap/app.php';
     
-    // Handle the request
+    // Handle the request (Laravel 12 style)
     $app->handleRequest(
-        Illuminate\Http\Request::capture()
+        \Illuminate\Http\Request::capture()
     );
     
 } catch (\Throwable $e) {
