@@ -1,5 +1,30 @@
 <?php
 
+// Handle CORS preflight requests FIRST
+if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
+    $origin = $_SERVER['HTTP_ORIGIN'] ?? '';
+    
+    // Allow all Vercel deployments and localhost
+    if (preg_match('/^https?:\/\/(localhost|.*\.vercel\.app)/', $origin)) {
+        header("Access-Control-Allow-Origin: $origin");
+        header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE, PATCH, OPTIONS');
+        header('Access-Control-Allow-Headers: Content-Type, Authorization, X-Requested-With, Accept');
+        header('Access-Control-Allow-Credentials: true');
+        header('Access-Control-Max-Age: 86400');
+    }
+    
+    http_response_code(204);
+    exit(0);
+}
+
+// Set CORS headers for all requests
+$origin = $_SERVER['HTTP_ORIGIN'] ?? '';
+if (preg_match('/^https?:\/\/(localhost|.*\.vercel\.app)/', $origin)) {
+    header("Access-Control-Allow-Origin: $origin");
+    header('Access-Control-Allow-Credentials: true');
+    header('Access-Control-Expose-Headers: Content-Length, Content-Type');
+}
+
 // Minimal Laravel bootstrap for Vercel
 define('LARAVEL_START', microtime(true));
 
